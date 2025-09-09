@@ -44,7 +44,7 @@
                     </p>
                     
                     <!-- Save button -->
-                    <button class="inline-flex items-center gap-2 px-4 py-2.5 md:py-2 bg-white border border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow-md rounded-md transition-all">
+                    <button onclick="generateWeddingICS()" class="inline-flex items-center gap-2 px-4 py-2.5 md:py-2 bg-white border border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow-md rounded-md transition-all">
                         <i data-lucide="calendar-plus" class="w-4 h-4"></i>
                         <span class="text-sm font-medium">Add to Calendar</span>
                     </button>
@@ -108,6 +108,56 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+
+        // Generate ICS file for calendar download
+        function generateWeddingICS() {
+            // Wedding details
+            const eventTitle = "Sandip & Anokhi's Wedding";
+            const eventLocation = "Turf Club Garden, Camp, Pune, Maharashtra, India";
+            const mapUrl = "https://maps.app.goo.gl/CVNFFsvRL1Nj4a5ZA";
+            const eventDescription = "Join us as we celebrate the wedding of Sandip & Anokhi. Your presence will make our celebration complete!\\n\\nVenue: " + eventLocation;
+            
+            // Date: December 02, 2025 - formatted as all-day event
+            const eventDate = "20251202"; // YYYYMMDD format
+            
+            // Generate unique ID
+            const uid = "wedding-" + Date.now() + "@sandipandanokhi.com";
+            
+            // Create ICS content
+            const icsContent = 
+                "BEGIN:VCALENDAR\r\n" +
+                "VERSION:2.0\r\n" +
+                "PRODID:-//Sandip & Anokhi Wedding//EN\r\n" +
+                "CALSCALE:GREGORIAN\r\n" +
+                "METHOD:REQUEST\r\n" +
+                "BEGIN:VEVENT\r\n" +
+                "UID:" + uid + "\r\n" +
+                "DTSTART;VALUE=DATE:" + eventDate + "\r\n" +
+                "DTEND;VALUE=DATE:" + eventDate + "\r\n" +
+                "SUMMARY:" + eventTitle + "\r\n" +
+                "DESCRIPTION:" + eventDescription + "\r\n" +
+                "LOCATION:" + eventLocation + "\r\n" +
+                "URL:" + mapUrl + "\r\n" +
+                "STATUS:CONFIRMED\r\n" +
+                "SEQUENCE:0\r\n" +
+                "END:VEVENT\r\n" +
+                "END:VCALENDAR";
+            
+            // Create blob and download
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            
+            // Create temporary download link
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'sandip-anokhi-wedding.ics';
+            document.body.appendChild(link);
+            link.click();
+            
+            // Cleanup
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
     </script>
 </body>
 </html>
