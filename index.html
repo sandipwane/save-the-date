@@ -14,30 +14,37 @@
     </style>
 </head>
 <body class="bg-white min-h-screen">
-    <div class="max-w-6xl mx-auto p-8 md:p-16">
+    <div class="max-w-6xl mx-auto p-4 md:p-12 lg:p-16">
         <!-- Header -->
-        <header class="mb-16">
-            <h1 class="text-4xl md:text-5xl font-semibold text-gray-900">Save the Date</h1>
+        <header class="mb-8 md:mb-16">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900">Save the Date</h1>
         </header>
 
+        <!-- Mobile Image - Shows only on mobile, below title -->
+        <div class="block md:hidden mb-8">
+            <div class="flex justify-center">
+                <img src="girl-looking-at-calander.png" alt="Calendar illustration" class="w-full max-w-xs object-contain">
+            </div>
+        </div>
+
         <!-- Main Content -->
-        <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             <!-- Left Column - Text Content -->
-            <div class="space-y-12">
+            <div class="space-y-8 md:space-y-12">
                 <!-- Introduction Section -->
                 <section>
-                    <h2 class="text-3xl font-semibold text-gray-900 mb-4">
+                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3 md:mb-4">
                         Hello, We're Getting Married!
                     </h2>
-                    <p class="text-base text-gray-600 leading-relaxed mb-2">
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2">
                         We're <span class="font-medium text-gray-900">Sandip & Anokhi</span>, and we're excited to invite you to celebrate our special day with us.
                     </p>
-                    <p class="text-base text-gray-600 leading-relaxed mb-6">
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 md:mb-6">
                         Join us as we begin our journey together, surrounded by family and friends who mean the world to us. Your presence will make our celebration complete.
                     </p>
                     
                     <!-- Save button -->
-                    <button class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
+                    <button class="inline-flex items-center gap-2 px-4 py-2.5 md:py-2 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
                         <i data-lucide="calendar-plus" class="w-4 h-4"></i>
                         <span class="text-sm font-medium">Add to Calendar</span>
                     </button>
@@ -45,16 +52,16 @@
 
                 <!-- Event Details Section -->
                 <section>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Event Details</h3>
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 md:mb-6">Event Details</h3>
                     
                     <!-- Details Grid -->
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                         <!-- Date Card -->
-                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-100">
-                            <div class="flex items-start gap-3 mb-3">
+                        <div class="p-4 sm:p-5 md:p-6 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="flex items-start gap-3">
                                 <i data-lucide="calendar" class="w-5 h-5 text-gray-600 mt-0.5"></i>
                                 <div>
-                                    <h4 class="font-medium text-gray-900 mb-1">Wedding Date</h4>
+                                    <h4 class="font-medium text-gray-900 mb-1 text-sm sm:text-base">Wedding Date</h4>
                                     <p class="text-sm text-gray-600">December 02, 2025</p>
                                     <p class="text-xs text-gray-500 mt-1">Tuesday</p>
                                 </div>
@@ -63,11 +70,11 @@
 
                         <!-- Venue Card -->
                         <a href="https://maps.app.goo.gl/CVNFFsvRL1Nj4a5ZA" target="_blank" class="block group">
-                            <div class="p-6 bg-gray-50 rounded-lg border border-gray-100 transition-all group-hover:border-gray-200 group-hover:shadow-sm">
-                                <div class="flex items-start gap-3 mb-3">
+                            <div class="p-4 sm:p-5 md:p-6 bg-gray-50 rounded-lg border border-gray-100 transition-all group-hover:border-gray-200 group-hover:shadow-sm">
+                                <div class="flex items-start gap-3">
                                     <i data-lucide="map-pin" class="w-5 h-5 text-gray-600 mt-0.5"></i>
                                     <div>
-                                        <h4 class="font-medium text-gray-900 mb-1">Turf Club Garden</h4>
+                                        <h4 class="font-medium text-gray-900 mb-1 text-sm sm:text-base">Turf Club Garden</h4>
                                         <p class="text-sm text-gray-600">Camp, Pune</p>
                                         <p class="text-xs text-gray-500 mt-1">Maharashtra, India</p>
                                         <p class="text-xs text-gray-400 mt-2 group-hover:text-gray-600 transition-colors">Get directions →</p>
@@ -80,21 +87,21 @@
 
                 <!-- RSVP Section -->
                 <section>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-6">RSVP</h3>
-                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-100">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 md:mb-6">RSVP</h3>
+                    <div class="p-4 sm:p-5 md:p-6 bg-gray-50 rounded-lg border border-gray-100">
                         <p class="text-sm text-gray-600 mb-4">
                             Please let us know if you'll be joining us for the celebration.
                         </p>
-                        <button class="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors">
+                        <button class="px-4 py-2.5 md:py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors">
                             Confirm Attendance
                         </button>
                     </div>
                 </section>
             </div>
 
-            <!-- Right Column - Illustration -->
-            <div class="flex justify-center md:justify-end md:sticky md:top-8">
-                <img src="girl-looking-at-calander.png" alt="Calendar illustration" class="w-full max-w-sm object-contain">
+            <!-- Right Column - Illustration (Desktop only) -->
+            <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-8">
+                <img src="girl-looking-at-calander.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain">
             </div>
         </div>
     </div>
