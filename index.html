@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Save the Date - Sandip & Anokhi</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class' // Use class-based dark mode for manual toggle
+        }
+    </script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -13,17 +18,22 @@
         }
     </style>
 </head>
-<body class="min-h-screen" style="background-color: #fcfcfc;">
+<body class="min-h-screen bg-[#fcfcfc] dark:bg-gray-900 transition-colors duration-200">
     <div class="max-w-6xl mx-auto p-4 md:p-12 lg:p-16">
         <!-- Header -->
-        <header class="mb-8 md:mb-16">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900">Save the Date</h1>
+        <header class="mb-8 md:mb-16 flex justify-between items-center">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 dark:text-gray-100">Save the Date</h1>
+            <!-- Dark mode toggle -->
+            <button id="theme-toggle" class="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all" aria-label="Toggle dark mode">
+                <i data-lucide="sun" class="w-5 h-5 text-gray-600 dark:text-gray-400 hidden dark:block"></i>
+                <i data-lucide="moon" class="w-5 h-5 text-gray-600 dark:text-gray-400 block dark:hidden"></i>
+            </button>
         </header>
 
         <!-- Mobile Image - Shows only on mobile, below title -->
         <div class="block md:hidden mb-8">
             <div class="flex justify-center">
-                <img src="girl-looking-at-calander.png" alt="Calendar illustration" class="w-full max-w-xs object-contain">
+                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-xs object-contain dark:invert dark:brightness-90">
             </div>
         </div>
 
@@ -33,51 +43,51 @@
             <div class="space-y-8 md:space-y-12">
                 <!-- Introduction Section -->
                 <section>
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3 md:mb-4">
+                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 md:mb-4">
                         Hello, We're Getting Married!
                     </h2>
-                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2">
-                        We're <span class="font-medium text-gray-900">Sandip & Anokhi</span>, and we're excited to invite you to celebrate our special day with us.
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-2">
+                        We're <span class="font-medium text-gray-900 dark:text-gray-100">Sandip & Anokhi</span>, and we're excited to invite you to celebrate our special day with us.
                     </p>
-                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 md:mb-6">
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4 md:mb-6">
                         Join us as we begin our journey together, surrounded by family and friends who mean the world to us. Your presence will make our celebration complete.
                     </p>
                     
                     <!-- Save button -->
-                    <button onclick="generateWeddingICS()" class="inline-flex items-center gap-2 px-4 py-2.5 md:py-2 bg-white border border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow-md rounded-md transition-all">
-                        <i data-lucide="calendar-plus" class="w-4 h-4"></i>
-                        <span class="text-sm font-medium">Add to Calendar</span>
+                    <button onclick="generateWeddingICS()" class="inline-flex items-center gap-2 px-4 py-2.5 md:py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 hover:shadow-md rounded-md transition-all">
+                        <i data-lucide="calendar-plus" class="w-4 h-4 text-gray-700 dark:text-gray-300"></i>
+                        <span class="text-sm font-medium text-gray-900 dark:text-gray-100">Add to Calendar</span>
                     </button>
                 </section>
 
                 <!-- Event Details Section -->
                 <section>
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 md:mb-6">Event Details</h3>
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 md:mb-6">Event Details</h3>
                     
                     <!-- Details Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                         <!-- Date Card -->
-                        <div class="p-4 sm:p-5 md:p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+                        <div class="p-4 sm:p-5 md:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
                             <div class="flex items-start gap-3">
-                                <i data-lucide="calendar" class="w-5 h-5 text-gray-600 mt-0.5"></i>
+                                <i data-lucide="calendar" class="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5"></i>
                                 <div>
-                                    <h4 class="font-medium text-gray-900 mb-1 text-sm sm:text-base">Wedding Date</h4>
-                                    <p class="text-sm text-gray-600">December 02, 2025</p>
-                                    <p class="text-xs text-gray-500 mt-1">Tuesday</p>
+                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-1 text-sm sm:text-base">Wedding Date</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">December 02, 2025</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">Tuesday</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Venue Card -->
                         <a href="https://maps.app.goo.gl/CVNFFsvRL1Nj4a5ZA" target="_blank" class="block group">
-                            <div class="p-4 sm:p-5 md:p-6 bg-white rounded-lg border border-gray-200 shadow-sm transition-all group-hover:border-gray-300 group-hover:shadow-md">
+                            <div class="p-4 sm:p-5 md:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm transition-all group-hover:border-gray-300 dark:group-hover:border-gray-600 group-hover:shadow-md">
                                 <div class="flex items-start gap-3">
-                                    <i data-lucide="map-pin" class="w-5 h-5 text-gray-600 mt-0.5"></i>
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5"></i>
                                     <div>
-                                        <h4 class="font-medium text-gray-900 mb-1 text-sm sm:text-base">Turf Club Garden</h4>
-                                        <p class="text-sm text-gray-600">Camp, Pune</p>
-                                        <p class="text-xs text-gray-500 mt-1">Maharashtra, India</p>
-                                        <p class="text-xs text-gray-400 mt-2 group-hover:text-gray-600 transition-colors">Get directions →</p>
+                                        <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-1 text-sm sm:text-base">Turf Club Garden</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Camp, Pune</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">Maharashtra, India</p>
+                                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">Get directions →</p>
                                     </div>
                                 </div>
                             </div>
@@ -87,12 +97,12 @@
 
                 <!-- RSVP Section -->
                 <section>
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-4 md:mb-6">RSVP</h3>
-                    <div class="p-4 sm:p-5 md:p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
-                        <p class="text-sm text-gray-600 mb-4">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 md:mb-6">RSVP</h3>
+                    <div class="p-4 sm:p-5 md:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
                             Please let us know if you'll be joining us for the celebration.
                         </p>
-                        <button class="px-4 py-2.5 md:py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors">
+                        <button class="px-4 py-2.5 md:py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm font-medium rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
                             Confirm Attendance
                         </button>
                     </div>
@@ -101,11 +111,44 @@
 
             <!-- Right Column - Illustration (Desktop only) -->
             <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-8">
-                <img src="girl-looking-at-calander.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain">
+                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain dark:invert dark:brightness-90">
             </div>
         </div>
     </div>
     <script>
+        // Dark mode toggle functionality
+        function initDarkMode() {
+            // Check if user has a saved preference, otherwise use system preference
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        // Initialize dark mode on page load
+        initDarkMode();
+
+        // Theme toggle button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            themeToggle.addEventListener('click', function() {
+                const isDark = document.documentElement.classList.contains('dark');
+                
+                if (isDark) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+
         // Initialize Lucide icons
         lucide.createIcons();
 
