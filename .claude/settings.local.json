@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:add-to-calendar-button.com)",
       "WebSearch",
-      "mcp__puppeteer__puppeteer_screenshot"
+      "mcp__puppeteer__puppeteer_screenshot",
+      "Bash(gh auth:*)"
     ],
     "deny": [],
     "ask": []

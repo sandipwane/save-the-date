@@ -29,6 +29,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Canvas Confetti for celebration animation -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
@@ -52,7 +54,7 @@
         <div class="block md:hidden mb-8">
             <div class="flex justify-center">
                 <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-xs object-contain dark:hidden">
-                <img src="girl-calander-dark-mode-no-bg.png" alt="Calendar illustration" class="w-full max-w-xs object-contain hidden dark:block dark:opacity-90 dark:contrast-95 dark:brightness-110" style="filter: drop-shadow(0 0 20px rgba(255,255,255,0.05));">
+                <img src="girl-calander-dark-mode-no-bg.png" alt="Calendar illustration" class="w-full max-w-xs object-contain hidden dark:block" style="filter: invert(1) opacity(0.9);">
             </div>
         </div>
 
@@ -131,7 +133,7 @@
             <!-- Right Column - Illustration (Desktop only) -->
             <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-8">
                 <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain dark:hidden">
-                <img src="girl-calander-dark-mode-no-bg.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain hidden dark:block dark:opacity-90 dark:contrast-95 dark:brightness-110" style="filter: drop-shadow(0 0 20px rgba(255,255,255,0.05));">
+                <img src="girl-calander-dark-mode-no-bg.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain hidden dark:block" style="filter: invert(1) opacity(0.9);">
             </div>
         </div>
     </div>
@@ -415,6 +417,45 @@
                     contact: formData.guestContact,
                     timestamp: Date.now()
                 }));
+
+                // Trigger confetti animation if they're attending
+                if (formData.attendance === 'yes') {
+                    var count = 200;
+                    var defaults = {
+                        origin: { y: 0.7 }
+                    };
+
+                    function fire(particleRatio, opts) {
+                        confetti({
+                            ...defaults,
+                            ...opts,
+                            particleCount: Math.floor(count * particleRatio)
+                        });
+                    }
+
+                    fire(0.25, {
+                        spread: 26,
+                        startVelocity: 55,
+                    });
+                    fire(0.2, {
+                        spread: 60,
+                    });
+                    fire(0.35, {
+                        spread: 100,
+                        decay: 0.91,
+                        scalar: 0.8
+                    });
+                    fire(0.1, {
+                        spread: 120,
+                        startVelocity: 25,
+                        decay: 0.92,
+                        scalar: 1.2
+                    });
+                    fire(0.1, {
+                        spread: 120,
+                        startVelocity: 45,
+                    });
+                }
 
                 // Show success message
                 showMessage('Thank you! Your RSVP has been sent successfully. We look forward to celebrating with you!', false);
