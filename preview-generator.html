@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Image Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            width: 1200px;
+            height: 630px;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center">
+    <div class="relative w-full h-full flex items-center justify-center p-16">
+        <!-- Background decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-pink-100 to-purple-100 rounded-full blur-3xl opacity-30"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-purple-100 to-pink-100 rounded-full blur-3xl opacity-30"></div>
+        
+        <!-- Main content -->
+        <div class="relative z-10 flex items-center gap-16">
+            <!-- Left side - Text content -->
+            <div class="flex-1 text-center">
+                <h1 class="text-7xl font-light text-gray-800 mb-8 tracking-wide">Save the Date</h1>
+                <div class="space-y-4">
+                    <p class="text-4xl font-semibold text-gray-900">Sandip & Anokhi</p>
+                    <div class="flex items-center justify-center gap-4 text-pink-500">
+                        <span class="text-2xl">💝</span>
+                        <span class="text-2xl">💝</span>
+                        <span class="text-2xl">💝</span>
+                    </div>
+                    <p class="text-3xl text-gray-700 font-light mt-8">December 02, 2025</p>
+                    <p class="text-xl text-gray-600 mt-4">Turf Club Garden, Pune</p>
+                </div>
+            </div>
+            
+            <!-- Right side - Image -->
+            <div class="flex-1 flex justify-center">
+                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-md object-contain">
+            </div>
+        </div>
+        
+        <!-- Bottom decoration -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <p class="text-sm text-gray-500 tracking-widest uppercase">Wedding Invitation</p>
+        </div>
+    </div>
+</body>
+</html>

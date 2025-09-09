@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:add-to-calendar-button.com)",
-      "WebSearch"
+      "WebSearch",
+      "mcp__puppeteer__puppeteer_screenshot"
     ],
     "deny": [],
     "ask": []
