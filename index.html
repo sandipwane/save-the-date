@@ -24,16 +24,17 @@
         <header class="mb-8 md:mb-16 flex justify-between items-center">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 dark:text-gray-100">Save the Date</h1>
             <!-- Dark mode toggle -->
-            <button id="theme-toggle" class="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all" aria-label="Toggle dark mode">
-                <i data-lucide="sun" class="w-5 h-5 text-gray-600 dark:text-gray-400 hidden dark:block"></i>
-                <i data-lucide="moon" class="w-5 h-5 text-gray-600 dark:text-gray-400 block dark:hidden"></i>
+            <button id="theme-toggle" class="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+                <i data-lucide="sun" class="w-5 h-5 text-gray-700 dark:text-gray-300 hidden dark:block"></i>
+                <i data-lucide="moon" class="w-5 h-5 text-gray-700 dark:text-gray-300 block dark:hidden"></i>
             </button>
         </header>
 
         <!-- Mobile Image - Shows only on mobile, below title -->
         <div class="block md:hidden mb-8">
             <div class="flex justify-center">
-                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-xs object-contain dark:invert dark:brightness-90">
+                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-xs object-contain dark:hidden">
+                <img src="illustration_dark.png" alt="Calendar illustration" class="w-full max-w-xs object-contain hidden dark:block dark:opacity-90 dark:contrast-95 dark:brightness-110" style="filter: drop-shadow(0 0 20px rgba(255,255,255,0.05));">
             </div>
         </div>
 
@@ -111,7 +112,8 @@
 
             <!-- Right Column - Illustration (Desktop only) -->
             <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-8">
-                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain dark:invert dark:brightness-90">
+                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain dark:hidden">
+                <img src="illustration_dark.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain hidden dark:block dark:opacity-90 dark:contrast-95 dark:brightness-110" style="filter: drop-shadow(0 0 20px rgba(255,255,255,0.05));">
             </div>
         </div>
     </div>
