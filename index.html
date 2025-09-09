@@ -48,27 +48,6 @@
                 <section>
                     <h3 class="text-xl font-semibold text-gray-900 mb-6">Event Details</h3>
                     
-                    <!-- Tabs -->
-                    <div class="flex gap-6 mb-8 border-b border-gray-200">
-                        <button class="pb-3 text-sm font-medium text-gray-900 border-b-2 border-gray-900">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                Date & Time
-                            </span>
-                        </button>
-                        <button class="pb-3 text-sm text-gray-500 hover:text-gray-700">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                                Venue
-                            </span>
-                        </button>
-                    </div>
-
                     <!-- Details Grid -->
                     <div class="grid md:grid-cols-2 gap-6">
                         <!-- Date Card -->
@@ -86,19 +65,22 @@
                         </div>
 
                         <!-- Venue Card -->
-                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-100">
-                            <div class="flex items-start gap-3 mb-3">
-                                <svg class="w-5 h-5 text-gray-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-1">Turf Club Garden</h4>
-                                    <p class="text-sm text-gray-600">Camp, Pune</p>
-                                    <p class="text-xs text-gray-500 mt-1">Maharashtra, India</p>
+                        <a href="https://maps.app.goo.gl/CVNFFsvRL1Nj4a5ZA" target="_blank" class="block group">
+                            <div class="p-6 bg-gray-50 rounded-lg border border-gray-100 transition-all group-hover:border-gray-200 group-hover:shadow-sm">
+                                <div class="flex items-start gap-3 mb-3">
+                                    <svg class="w-5 h-5 text-gray-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900 mb-1">Turf Club Garden</h4>
+                                        <p class="text-sm text-gray-600">Camp, Pune</p>
+                                        <p class="text-xs text-gray-500 mt-1">Maharashtra, India</p>
+                                        <p class="text-xs text-gray-400 mt-2 group-hover:text-gray-600 transition-colors">Get directions →</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </section>
 
