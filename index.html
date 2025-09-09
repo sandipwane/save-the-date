@@ -12,32 +12,113 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
-    <div class="max-w-md w-full bg-white rounded-lg shadow-sm p-8 md:p-12">
-        <div class="text-center space-y-6">
-            <div class="mb-8">
-                <img src="girl-looking-at-calander.png" alt="Calendar illustration" class="w-48 h-48 mx-auto object-contain">
+<body class="bg-white min-h-screen">
+    <div class="max-w-6xl mx-auto p-8 md:p-16">
+        <!-- Header -->
+        <header class="mb-16">
+            <h1 class="text-4xl md:text-5xl font-semibold text-gray-900">Save the Date</h1>
+        </header>
+
+        <!-- Main Content -->
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            <!-- Left Column - Text Content -->
+            <div class="space-y-12">
+                <!-- Introduction Section -->
+                <section>
+                    <h2 class="text-3xl font-semibold text-gray-900 mb-4">
+                        Hello, We're Getting Married!
+                    </h2>
+                    <p class="text-base text-gray-600 leading-relaxed mb-2">
+                        We're <span class="font-medium text-gray-900">Sandip & Anokhi</span>, and we're excited to invite you to celebrate our special day with us.
+                    </p>
+                    <p class="text-base text-gray-600 leading-relaxed mb-6">
+                        Join us as we begin our journey together, surrounded by family and friends who mean the world to us. Your presence will make our celebration complete.
+                    </p>
+                    
+                    <!-- Save button -->
+                    <button class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-sm font-medium">Add to Calendar</span>
+                    </button>
+                </section>
+
+                <!-- Event Details Section -->
+                <section>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Event Details</h3>
+                    
+                    <!-- Tabs -->
+                    <div class="flex gap-6 mb-8 border-b border-gray-200">
+                        <button class="pb-3 text-sm font-medium text-gray-900 border-b-2 border-gray-900">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Date & Time
+                            </span>
+                        </button>
+                        <button class="pb-3 text-sm text-gray-500 hover:text-gray-700">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Venue
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- Details Grid -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Date Card -->
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="flex items-start gap-3 mb-3">
+                                <svg class="w-5 h-5 text-gray-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-1">Wedding Date</h4>
+                                    <p class="text-sm text-gray-600">December 02, 2025</p>
+                                    <p class="text-xs text-gray-500 mt-1">Tuesday</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Venue Card -->
+                        <div class="p-6 bg-gray-50 rounded-lg border border-gray-100">
+                            <div class="flex items-start gap-3 mb-3">
+                                <svg class="w-5 h-5 text-gray-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-1">Turf Club Garden</h4>
+                                    <p class="text-sm text-gray-600">Camp, Pune</p>
+                                    <p class="text-xs text-gray-500 mt-1">Maharashtra, India</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RSVP Section -->
+                <section>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">RSVP</h3>
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-100">
+                        <p class="text-sm text-gray-600 mb-4">
+                            Please let us know if you'll be joining us for the celebration.
+                        </p>
+                        <button class="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors">
+                            Confirm Attendance
+                        </button>
+                    </div>
+                </section>
             </div>
-            
-            <div class="space-y-2">
-                <h1 class="text-sm font-medium text-gray-500 tracking-widest uppercase">Save the Date</h1>
-                <div class="w-12 h-0.5 bg-gray-300 mx-auto"></div>
-            </div>
-            
-            <div class="space-y-1">
-                <p class="text-xs text-gray-500 uppercase tracking-wider">For the Wedding of</p>
-                <h2 class="text-3xl md:text-4xl font-light text-gray-900">
-                    Sandip & Anokhi
-                </h2>
-            </div>
-            
-            <div class="py-4">
-                <p class="text-xl text-gray-700 font-light">December 02, 2025</p>
-            </div>
-            
-            <div class="pt-4 space-y-1">
-                <p class="text-sm font-medium text-gray-700 uppercase tracking-wide">Turf Club Garden</p>
-                <p class="text-sm text-gray-600">Camp, Pune</p>
+
+            <!-- Right Column - Illustration -->
+            <div class="flex justify-center md:justify-end md:sticky md:top-8">
+                <img src="girl-looking-at-calander.png" alt="Calendar illustration" class="w-full max-w-sm object-contain">
             </div>
         </div>
     </div>
