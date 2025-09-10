@@ -4,7 +4,10 @@
       "WebFetch(domain:add-to-calendar-button.com)",
       "WebSearch",
       "mcp__puppeteer__puppeteer_screenshot",
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(python3:*)",
+      "mcp__puppeteer__puppeteer_navigate",
+      "mcp__puppeteer__puppeteer_evaluate"
     ],
     "deny": [],
     "ask": []
