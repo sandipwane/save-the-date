@@ -274,13 +274,13 @@
         function selectGuests(num) {
             // Remove active state from all buttons
             document.querySelectorAll('.guest-btn').forEach(btn => {
-                btn.classList.remove('bg-gray-900', 'dark:bg-gray-100', 'text-white', 'dark:text-gray-900', 'border-gray-900', 'dark:border-gray-100');
+                btn.classList.remove('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700');
                 btn.classList.add('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600');
             });
             
             // Add active state to selected button
             const selectedBtn = document.querySelector(`[data-guests="${num}"]`);
-            selectedBtn.classList.add('bg-gray-900', 'dark:bg-gray-100', 'text-white', 'dark:text-gray-900', 'border-gray-900', 'dark:border-gray-100');
+            selectedBtn.classList.add('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700');
             selectedBtn.classList.remove('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600');
             
             // Set hidden input value
@@ -338,7 +338,7 @@
             
             // Reset button states
             document.querySelectorAll('.guest-btn').forEach(btn => {
-                btn.classList.remove('bg-gray-900', 'dark:bg-gray-100', 'text-white', 'dark:text-gray-900', 'border-gray-900', 'dark:border-gray-100');
+                btn.classList.remove('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700');
                 btn.classList.add('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600');
             });
             document.querySelectorAll('.attendance-btn').forEach(btn => {
