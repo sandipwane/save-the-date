@@ -183,10 +183,10 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">How many guests?</label>
                     <div class="grid grid-cols-4 gap-2">
-                        <button type="button" onclick="selectGuests(1)" data-guests="1" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">1</button>
-                        <button type="button" onclick="selectGuests(2)" data-guests="2" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">2</button>
-                        <button type="button" onclick="selectGuests(3)" data-guests="3" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">3</button>
-                        <button type="button" onclick="selectGuests('4+')" data-guests="4+" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">4+</button>
+                        <button type="button" onclick="selectGuests(1)" data-guests="1" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-300 transition-colors">1</button>
+                        <button type="button" onclick="selectGuests(2)" data-guests="2" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-300 transition-colors">2</button>
+                        <button type="button" onclick="selectGuests(3)" data-guests="3" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-300 transition-colors">3</button>
+                        <button type="button" onclick="selectGuests('4+')" data-guests="4+" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-300 transition-colors">4+</button>
                     </div>
                     <input type="hidden" id="numberOfGuests" name="numberOfGuests" value="1" required>
                 </div>
@@ -274,14 +274,14 @@
         function selectGuests(num) {
             // Remove active state from all buttons
             document.querySelectorAll('.guest-btn').forEach(btn => {
-                btn.classList.remove('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700');
-                btn.classList.add('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600');
+                btn.classList.remove('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700', 'hover:bg-gray-900', 'hover:text-white');
+                btn.classList.add('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600', 'hover:bg-gray-100', 'hover:text-gray-700', 'dark:hover:bg-gray-700', 'dark:hover:text-gray-300');
             });
             
-            // Add active state to selected button
+            // Add active state to selected button and remove hover effects
             const selectedBtn = document.querySelector(`[data-guests="${num}"]`);
-            selectedBtn.classList.add('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700');
-            selectedBtn.classList.remove('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600');
+            selectedBtn.classList.add('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700', 'hover:bg-gray-900', 'hover:text-white');
+            selectedBtn.classList.remove('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600', 'hover:bg-gray-100', 'hover:text-gray-700', 'dark:hover:bg-gray-700', 'dark:hover:text-gray-300');
             
             // Set hidden input value
             document.getElementById('numberOfGuests').value = num;
@@ -338,8 +338,8 @@
             
             // Reset button states
             document.querySelectorAll('.guest-btn').forEach(btn => {
-                btn.classList.remove('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700');
-                btn.classList.add('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600');
+                btn.classList.remove('bg-gray-900', 'dark:bg-gray-700', 'text-white', 'dark:text-white', 'border-gray-900', 'dark:border-gray-700', 'hover:bg-gray-900', 'hover:text-white');
+                btn.classList.add('text-gray-700', 'dark:text-gray-300', 'border-gray-300', 'dark:border-gray-600', 'hover:bg-gray-100', 'hover:text-gray-700', 'dark:hover:bg-gray-700', 'dark:hover:text-gray-300');
             });
             document.querySelectorAll('.attendance-btn').forEach(btn => {
                 btn.classList.remove('border-green-500', 'dark:border-green-400', 'bg-green-50', 'dark:bg-green-900/20',
