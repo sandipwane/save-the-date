@@ -39,19 +39,26 @@
         .font-serif {
             font-family: 'Playfair Display', serif;
         }
+        .header-shadow {
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
     </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] dark:bg-gray-900 transition-colors duration-200">
-    <div class="max-w-6xl mx-auto p-4 md:p-12 lg:p-16">
-        <!-- Header -->
-        <header class="mb-8 md:mb-16 flex justify-between items-center">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-wide text-gray-900 dark:text-gray-100">Save the Date</h1>
+    <!-- Fixed Header -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-[#fcfcfc] dark:bg-gray-900 transition-all duration-200">
+        <div class="max-w-6xl mx-auto p-4 md:px-12 lg:px-16 md:py-6 flex justify-between items-center">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide text-gray-900 dark:text-gray-100">Save the Date</h1>
             <!-- Dark mode toggle -->
             <button id="theme-toggle" class="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
                 <i data-lucide="sun" class="w-5 h-5 text-gray-700 dark:text-gray-300 hidden dark:block"></i>
                 <i data-lucide="moon" class="w-5 h-5 text-gray-700 dark:text-gray-300 block dark:hidden"></i>
             </button>
-        </header>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="max-w-6xl mx-auto p-4 md:p-12 lg:p-16 mt-20 md:mt-28">
 
         <!-- Mobile Image - Shows only on mobile, below title -->
         <div class="block md:hidden mb-8">
@@ -125,6 +132,37 @@
                                 </div>
                             </div>
                         </a>
+
+                        <!-- Mehendi Card -->
+                        <div class="p-5 sm:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow min-h-[160px]">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-6 flex justify-center">
+                                    <i data-lucide="palette" class="w-5 h-5 text-gray-500 dark:text-gray-400 mt-0.5"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Mehendi Ceremony</h4>
+                                    <p class="text-lg font-medium text-gray-900 dark:text-gray-100 leading-tight">November 30, 2025</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1.5">Sunday, 4:00 PM</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-500 mt-0.5">Venue: TBD</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Haldi Card -->
+                        <div class="p-5 sm:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow min-h-[160px]">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-6 flex justify-center">
+                                    <i data-lucide="sparkles" class="w-5 h-5 text-gray-500 dark:text-gray-400 mt-0.5"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Haldi Ceremony</h4>
+                                    <p class="text-lg font-medium text-gray-900 dark:text-gray-100 leading-tight">December 01, 2025</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1.5">Monday, 10:00 AM</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-500 mt-0.5">Venue: TBD</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </section>
 
@@ -143,7 +181,7 @@
             </div>
 
             <!-- Right Column - Illustration (Desktop only) -->
-            <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-8">
+            <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-32">
                 <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain dark:hidden">
                 <img src="girl-calander-dark-mode-no-bg.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain hidden dark:block" style="filter: invert(1) opacity(0.9);">
             </div>
@@ -266,6 +304,16 @@
 
         // Initialize Lucide icons
         lucide.createIcons();
+
+        // Add scroll shadow to header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 10) {
+                header.classList.add('header-shadow');
+            } else {
+                header.classList.remove('header-shadow');
+            }
+        });
 
         // Initialize EmailJS with your public key
         emailjs.init('Kh6ZdHS7_6Tx2Qzm2');
