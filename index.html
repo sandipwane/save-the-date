@@ -32,9 +32,12 @@
     <!-- Canvas Confetti for celebration animation -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
         }
     </style>
 </head>
@@ -42,7 +45,7 @@
     <div class="max-w-6xl mx-auto p-4 md:p-12 lg:p-16">
         <!-- Header -->
         <header class="mb-8 md:mb-16 flex justify-between items-center">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 dark:text-gray-100">Save the Date</h1>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-wide text-gray-900 dark:text-gray-100">Save the Date</h1>
             <!-- Dark mode toggle -->
             <button id="theme-toggle" class="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
                 <i data-lucide="sun" class="w-5 h-5 text-gray-700 dark:text-gray-300 hidden dark:block"></i>
@@ -64,51 +67,55 @@
             <div class="space-y-8 md:space-y-12">
                 <!-- Introduction Section -->
                 <section>
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 md:mb-4">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-gray-900 dark:text-gray-100 mb-4 md:mb-6">
                         Hello, We're Getting Married!
                     </h2>
-                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-2">
-                        We're <span class="font-medium text-gray-900 dark:text-gray-100">Sandip & Anokhi</span>, and we're excited to invite you to celebrate our special day with us.
+                    <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                        We're <span class="font-serif text-2xl font-medium text-gray-900 dark:text-gray-100 tracking-tight">Sandip & Anokhi</span>, and we're excited to invite you to celebrate our special day with us.
                     </p>
-                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4 md:mb-6">
+                    <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6 md:mb-8">
                         Join us as we begin our journey together, surrounded by family and friends who mean the world to us. Your presence will make our celebration complete.
                     </p>
                     
                     <!-- Save button -->
-                    <button onclick="generateWeddingICS()" class="inline-flex items-center gap-2 px-4 py-2.5 md:py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 hover:shadow-md rounded-md transition-all">
+                    <button onclick="generateWeddingICS()" class="inline-flex items-center gap-2.5 px-5 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 hover:shadow-md rounded-md transition-all">
                         <i data-lucide="calendar-plus" class="w-4 h-4 text-gray-700 dark:text-gray-300"></i>
-                        <span class="text-sm font-medium text-gray-900 dark:text-gray-100">Add to Calendar</span>
+                        <span class="text-base font-medium text-gray-900 dark:text-gray-100">Add to Calendar</span>
                     </button>
                 </section>
 
                 <!-- Event Details Section -->
                 <section>
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 md:mb-6">Event Details</h3>
+                    <h3 class="text-xl sm:text-2xl font-medium tracking-tight text-gray-900 dark:text-gray-100 mb-6 md:mb-8">Event Details</h3>
                     
                     <!-- Details Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                         <!-- Date Card -->
-                        <div class="p-4 sm:p-5 md:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
-                            <div class="flex items-start gap-3">
-                                <i data-lucide="calendar" class="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5"></i>
+                        <div class="p-5 sm:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-start gap-3.5">
+                                <i data-lucide="calendar" class="w-5 h-5 text-gray-500 dark:text-gray-400 mt-1"></i>
                                 <div>
-                                    <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-1 text-sm sm:text-base">Wedding Date</h4>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">December 02, 2025</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">Tuesday</p>
+                                    <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">Wedding Date</h4>
+                                    <p class="text-lg font-medium text-gray-900 dark:text-gray-100">December 02, 2025</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1.5 font-medium">Tuesday</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Venue Card -->
                         <a href="https://maps.app.goo.gl/CVNFFsvRL1Nj4a5ZA" target="_blank" class="block group">
-                            <div class="p-4 sm:p-5 md:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm transition-all group-hover:border-gray-300 dark:group-hover:border-gray-600 group-hover:shadow-md">
-                                <div class="flex items-start gap-3">
-                                    <i data-lucide="map-pin" class="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5"></i>
+                            <div class="p-5 sm:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm transition-all group-hover:border-gray-300 dark:group-hover:border-gray-600 group-hover:shadow-md">
+                                <div class="flex items-start gap-3.5">
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-gray-500 dark:text-gray-400 mt-1"></i>
                                     <div>
-                                        <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-1 text-sm sm:text-base">Turf Club Garden</h4>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400">Camp, Pune</p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">Maharashtra, India</p>
-                                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">Get directions →</p>
+                                        <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">Venue</h4>
+                                        <p class="text-lg font-medium text-gray-900 dark:text-gray-100">Turf Club Garden</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1.5">Camp, Pune</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-500 mt-0.5">Maharashtra, India</p>
+                                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mt-3 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors flex items-center gap-1">
+                                            Get directions
+                                            <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -118,12 +125,12 @@
 
                 <!-- RSVP Section -->
                 <section>
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 md:mb-6">RSVP</h3>
-                    <div class="p-4 sm:p-5 md:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    <h3 class="text-xl sm:text-2xl font-medium tracking-tight text-gray-900 dark:text-gray-100 mb-6 md:mb-8">RSVP</h3>
+                    <div class="p-5 sm:p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                        <p class="text-base text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">
                             Please let us know if you'll be joining us for the celebration.
                         </p>
-                        <button onclick="openRSVPModal()" class="px-4 py-2.5 md:py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm font-medium rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
+                        <button onclick="openRSVPModal()" class="px-5 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-base font-semibold rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors hover:shadow-md">
                             Confirm Attendance
                         </button>
                     </div>
@@ -144,7 +151,7 @@
             <!-- Modal Header -->
             <div class="p-6 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">RSVP for the Wedding</h2>
+                    <h2 class="text-2xl font-light tracking-tight text-gray-900 dark:text-gray-100">RSVP for the Wedding</h2>
                     <button onclick="closeRSVPModal()" class="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors">
                         <i data-lucide="x" class="w-5 h-5 text-gray-500 dark:text-gray-400"></i>
                     </button>
@@ -171,10 +178,10 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">How many guests?</label>
                     <div class="grid grid-cols-4 gap-2">
-                        <button type="button" onclick="selectGuests(1)" data-guests="1" class="guest-btn py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">1</button>
-                        <button type="button" onclick="selectGuests(2)" data-guests="2" class="guest-btn py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">2</button>
-                        <button type="button" onclick="selectGuests(3)" data-guests="3" class="guest-btn py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">3</button>
-                        <button type="button" onclick="selectGuests('4+')" data-guests="4+" class="guest-btn py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">4+</button>
+                        <button type="button" onclick="selectGuests(1)" data-guests="1" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">1</button>
+                        <button type="button" onclick="selectGuests(2)" data-guests="2" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">2</button>
+                        <button type="button" onclick="selectGuests(3)" data-guests="3" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">3</button>
+                        <button type="button" onclick="selectGuests('4+')" data-guests="4+" class="guest-btn py-2.5 px-3 border border-gray-300 dark:border-gray-600 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">4+</button>
                     </div>
                     <input type="hidden" id="numberOfGuests" name="numberOfGuests" value="1" required>
                 </div>
@@ -182,14 +189,14 @@
                 <!-- Simplified Attendance - Two big buttons -->
                 <div class="grid grid-cols-2 gap-3">
                     <button type="button" onclick="selectAttendance('yes')" data-attendance="yes" 
-                            class="attendance-btn py-3 px-4 border-2 border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:border-green-500 dark:hover:border-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all">
-                        <i data-lucide="check" class="w-5 h-5 mx-auto mb-1"></i>
-                        <span class="block text-sm font-medium">I'll be there!</span>
+                            class="attendance-btn py-4 px-4 border-2 border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:border-green-500 dark:hover:border-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all">
+                        <i data-lucide="check" class="w-5 h-5 mx-auto mb-1.5"></i>
+                        <span class="block text-base font-semibold">I'll be there!</span>
                     </button>
                     <button type="button" onclick="selectAttendance('no')" data-attendance="no" 
-                            class="attendance-btn py-3 px-4 border-2 border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:border-red-500 dark:hover:border-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all">
-                        <i data-lucide="x" class="w-5 h-5 mx-auto mb-1"></i>
-                        <span class="block text-sm font-medium">Can't make it</span>
+                            class="attendance-btn py-4 px-4 border-2 border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:border-red-500 dark:hover:border-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all">
+                        <i data-lucide="x" class="w-5 h-5 mx-auto mb-1.5"></i>
+                        <span class="block text-base font-semibold">Can't make it</span>
                     </button>
                     <input type="hidden" id="attendance" name="attendance" required>
                 </div>
@@ -209,7 +216,7 @@
                 <!-- Single Submit Button -->
                 <div>
                     <button type="submit" id="submitRSVP" 
-                            class="w-full py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-base font-medium rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            class="w-full py-3.5 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-base font-semibold rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
                         <span id="submitText">Send RSVP</span>
                         <span id="submitLoading" class="hidden">Sending...</span>
                     </button>
