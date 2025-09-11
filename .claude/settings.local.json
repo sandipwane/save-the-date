@@ -7,7 +7,8 @@
       "Bash(gh auth:*)",
       "Bash(python3:*)",
       "mcp__puppeteer__puppeteer_navigate",
-      "mcp__puppeteer__puppeteer_evaluate"
+      "mcp__puppeteer__puppeteer_evaluate",
+      "WebFetch(domain:www.publicalbum.org)"
     ],
     "deny": [],
     "ask": []
