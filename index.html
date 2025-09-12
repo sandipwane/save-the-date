@@ -56,7 +56,7 @@
         <!-- Mobile Image - Shows only on mobile, below title -->
         <div class="block md:hidden mb-8">
             <div class="flex justify-center">
-                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-xs object-contain">
+                <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full max-w-xs object-contain">
             </div>
         </div>
 
@@ -143,7 +143,7 @@
 
             <!-- Right Column - Illustration (Desktop only) -->
             <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-20 md:-mt-12 lg:-mt-16">
-                <img src="girl-looking-at-calander-transparent.png" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain">
+                <img id="hero-image-desktop" src="" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain">
             </div>
         </div>
     </div>
@@ -229,6 +229,38 @@
     </div>
 
     <script>
+        // Hero images array - update this list when adding new images
+        const heroImages = [
+            'hero-images/helping-hand.svg'
+            // Add more images here as you add them to the hero-images folder
+            // Examples:
+            // 'hero-images/image1.png',
+            // 'hero-images/image2.jpg',
+        ];
+
+        // Function to select and display a random hero image
+        function displayRandomHeroImage() {
+            if (heroImages.length > 0) {
+                // Select a random image from the array
+                const randomIndex = Math.floor(Math.random() * heroImages.length);
+                const selectedImage = heroImages[randomIndex];
+                
+                // Update both mobile and desktop image elements
+                const mobileImage = document.getElementById('hero-image-mobile');
+                const desktopImage = document.getElementById('hero-image-desktop');
+                
+                if (mobileImage) {
+                    mobileImage.src = selectedImage;
+                }
+                if (desktopImage) {
+                    desktopImage.src = selectedImage;
+                }
+            }
+        }
+
+        // Display random hero image on page load
+        displayRandomHeroImage();
+
         // Initialize Lucide icons
         lucide.createIcons();
 
