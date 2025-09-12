@@ -20,6 +20,11 @@
     <meta property="twitter:description" content="Join us as we celebrate our wedding on December 02, 2025 at Turf Club Garden, Pune">
     <meta property="twitter:image" content="https://sandipwane.github.io/save-the-date/preview2.JPG">
     
+    <!-- Preload hero images for faster loading -->
+    <link rel="preload" as="image" href="hero-images/helping-hand.svg">
+    <link rel="preload" as="image" href="hero-images/join-us.svg">
+    <link rel="preload" as="image" href="hero-images/umbrella-love.svg">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {}
@@ -40,6 +45,43 @@
         .header-shadow {
             box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
         }
+        
+        /* Image loading states */
+        .image-container {
+            position: relative;
+            background: transparent;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        
+        .image-loading {
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        
+        .image-loaded {
+            opacity: 1;
+        }
+        
+        /* Fixed dimensions for mobile image container */
+        .mobile-image-wrapper {
+            width: 100%;
+            max-width: 20rem; /* max-w-xs */
+            aspect-ratio: 1 / 1;
+        }
+        
+        /* Fixed dimensions for desktop image container */
+        .desktop-image-wrapper {
+            width: 100%;
+            max-width: 24rem; /* max-w-sm */
+            aspect-ratio: 1 / 1;
+        }
+        
+        @media (min-width: 1024px) {
+            .desktop-image-wrapper {
+                max-width: 28rem; /* max-w-md on lg screens */
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] transition-colors duration-200">
@@ -56,7 +98,9 @@
         <!-- Mobile Image - Shows only on mobile, below title -->
         <div class="block md:hidden mb-8">
             <div class="flex justify-center">
-                <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full max-w-xs object-contain">
+                <div class="mobile-image-wrapper image-container">
+                    <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full h-full object-contain image-loading" loading="eager">
+                </div>
             </div>
         </div>
 
@@ -143,7 +187,9 @@
 
             <!-- Right Column - Illustration (Desktop only) -->
             <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-32">
-                <img id="hero-image-desktop" src="" alt="Calendar illustration" class="w-full max-w-sm lg:max-w-md object-contain">
+                <div class="desktop-image-wrapper image-container">
+                    <img id="hero-image-desktop" src="" alt="Calendar illustration" class="w-full h-full object-contain image-loading" loading="eager">
+                </div>
             </div>
         </div>
     </div>
@@ -238,6 +284,28 @@
             'hero-images/umbrella-love.svg'
         ];
 
+        // Function to handle image loading with fade-in effect
+        function loadImageWithFadeIn(imgElement, imageSrc) {
+            // Create a new image object to preload
+            const tempImg = new Image();
+            
+            tempImg.onload = function() {
+                // Image has loaded successfully
+                imgElement.src = imageSrc;
+                imgElement.classList.remove('image-loading');
+                imgElement.classList.add('image-loaded');
+            };
+            
+            tempImg.onerror = function() {
+                // Handle error gracefully - still show image area
+                imgElement.classList.remove('image-loading');
+                imgElement.classList.add('image-loaded');
+            };
+            
+            // Start loading the image
+            tempImg.src = imageSrc;
+        }
+
         // Function to select and display a random hero image
         function displayRandomHeroImage() {
             if (heroImages.length > 0) {
@@ -245,15 +313,15 @@
                 const randomIndex = Math.floor(Math.random() * heroImages.length);
                 const selectedImage = heroImages[randomIndex];
                 
-                // Update both mobile and desktop image elements
+                // Update both mobile and desktop image elements with fade-in
                 const mobileImage = document.getElementById('hero-image-mobile');
                 const desktopImage = document.getElementById('hero-image-desktop');
                 
                 if (mobileImage) {
-                    mobileImage.src = selectedImage;
+                    loadImageWithFadeIn(mobileImage, selectedImage);
                 }
                 if (desktopImage) {
-                    desktopImage.src = selectedImage;
+                    loadImageWithFadeIn(desktopImage, selectedImage);
                 }
             }
         }
