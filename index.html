@@ -277,6 +277,9 @@
     </div>
 
     <script>
+        // Cache version - UPDATE THIS when adding/removing images
+        const CACHE_VERSION = '1.0.0';
+        
         // Hero images array - update this list when adding new images
         const heroImages = [
             'hero-images/dancing-01.svg',
@@ -308,23 +311,69 @@
             tempImg.src = imageSrc;
         }
 
-        // Function to select and display a random hero image
+        // Function to select and display a random hero image with history tracking
         function displayRandomHeroImage() {
-            if (heroImages.length > 0) {
-                // Select a random image from the array
-                const randomIndex = Math.floor(Math.random() * heroImages.length);
-                const selectedImage = heroImages[randomIndex];
-                
-                // Update both mobile and desktop image elements with fade-in
-                const mobileImage = document.getElementById('hero-image-mobile');
-                const desktopImage = document.getElementById('hero-image-desktop');
-                
-                if (mobileImage) {
-                    loadImageWithFadeIn(mobileImage, selectedImage);
-                }
-                if (desktopImage) {
-                    loadImageWithFadeIn(desktopImage, selectedImage);
-                }
+            if (heroImages.length === 0) return;
+            
+            // Get stored data from localStorage
+            let imageData = null;
+            try {
+                const stored = localStorage.getItem('heroImageData');
+                imageData = stored ? JSON.parse(stored) : null;
+            } catch (e) {
+                console.log('Error reading localStorage:', e);
+            }
+            
+            // Reset if version mismatch, no data, or corrupted data
+            if (!imageData || imageData.cacheVersion !== CACHE_VERSION) {
+                imageData = {
+                    cacheVersion: CACHE_VERSION,
+                    recentImages: [],
+                    lastShownImage: null
+                };
+            }
+            
+            // Filter out recently shown images to avoid repetition
+            let availableImages = heroImages.filter(img => 
+                !imageData.recentImages.includes(img)
+            );
+            
+            // If all images were recently shown (or only 1 image total), reset
+            if (availableImages.length === 0 || heroImages.length === 1) {
+                availableImages = heroImages;
+                imageData.recentImages = [];
+            }
+            
+            // Select a random image from available pool
+            const randomIndex = Math.floor(Math.random() * availableImages.length);
+            const selectedImage = availableImages[randomIndex];
+            
+            // Update recent images history (keep last 2-3 images)
+            imageData.recentImages.push(selectedImage);
+            const maxHistory = Math.min(3, Math.max(1, heroImages.length - 1));
+            if (imageData.recentImages.length > maxHistory) {
+                imageData.recentImages.shift();
+            }
+            
+            // Update last shown image
+            imageData.lastShownImage = selectedImage;
+            
+            // Save updated data to localStorage
+            try {
+                localStorage.setItem('heroImageData', JSON.stringify(imageData));
+            } catch (e) {
+                console.log('Error saving to localStorage:', e);
+            }
+            
+            // Update both mobile and desktop image elements with fade-in
+            const mobileImage = document.getElementById('hero-image-mobile');
+            const desktopImage = document.getElementById('hero-image-desktop');
+            
+            if (mobileImage) {
+                loadImageWithFadeIn(mobileImage, selectedImage);
+            }
+            if (desktopImage) {
+                loadImageWithFadeIn(desktopImage, selectedImage);
             }
         }
 
