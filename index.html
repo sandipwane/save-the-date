@@ -130,9 +130,9 @@
                     <!-- Details Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                         <!-- Date Card -->
-                        <div class="p-5 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow min-h-[160px]">
+                        <div class="p-5 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-sm min-h-[160px]">
                             <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-6 flex justify-center">
+                                <div class="flex-shrink-0 w-5 flex justify-center">
                                     <i data-lucide="calendar" class="w-5 h-5 text-gray-500 mt-0.5"></i>
                                 </div>
                                 <div class="flex-1">
@@ -144,9 +144,9 @@
                         </div>
 
                         <!-- Venue Card -->
-                        <div class="p-5 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow min-h-[160px]">
+                        <div class="p-5 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-sm min-h-[160px]">
                             <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-6 flex justify-center">
+                                <div class="flex-shrink-0 w-5 flex justify-center">
                                     <i data-lucide="map-pin" class="w-5 h-5 text-gray-500 mt-0.5"></i>
                                 </div>
                                 <div class="flex-1">
@@ -161,13 +161,25 @@
 
                     <!-- Action buttons -->
                     <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                        <button onclick="generateWeddingICS()" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3 bg-white border border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow-md rounded-md transition-all">
-                            <i data-lucide="calendar-plus" class="w-4 h-4 text-gray-700"></i>
-                            <span class="text-base font-medium text-gray-900">Add to Calendar</span>
+                        <button onclick="generateWeddingICS()" class="w-full p-3 bg-gray-900 hover:bg-gray-800 text-white rounded-md transition-all text-left shadow-sm hover:shadow-md">
+                            <div class="flex gap-4 px-2 sm:px-3">
+                                <div class="flex-shrink-0 w-5 flex justify-center">
+                                    <i data-lucide="calendar-plus" class="w-5 h-5 text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-base font-semibold text-white">Add to Calendar</span>
+                                </div>
+                            </div>
                         </button>
-                        <button onclick="window.open('https://maps.app.goo.gl/CVNFFsvRL1Nj4a5ZA', '_blank')" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3 bg-white border border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow-md rounded-md transition-all">
-                            <i data-lucide="map-pin" class="w-4 h-4 text-gray-700"></i>
-                            <span class="text-base font-medium text-gray-900">View on Map</span>
+                        <button onclick="window.open('https://maps.app.goo.gl/CVNFFsvRL1Nj4a5ZA', '_blank')" class="w-full p-3 bg-gray-900 hover:bg-gray-800 text-white rounded-md transition-all text-left shadow-sm hover:shadow-md">
+                            <div class="flex gap-4 px-2 sm:px-3">
+                                <div class="flex-shrink-0 w-5 flex justify-center">
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-base font-semibold text-white">View on Map</span>
+                                </div>
+                            </div>
                         </button>
                     </div>
                 </section>
