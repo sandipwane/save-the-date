@@ -84,30 +84,75 @@
                 max-width: 28rem; /* max-w-md on lg screens */
             }
         }
+        /* Navigation styles */
+        .nav-link {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .nav-link.active {
+            color: rgb(17 24 39);
+            font-weight: 500;
+        }
+        .nav-link:not(.active):hover {
+            color: rgb(55 65 81);
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgb(17 24 39);
+        }
+
+        /* Page transition animations */
+        .page-content {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        .page-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] transition-colors duration-200">
-    <!-- Fixed Header -->
+    <!-- Fixed Header with Navigation -->
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-[#fcfcfc] transition-all duration-200">
-        <div class="max-w-6xl mx-auto p-4 md:px-12 lg:px-16 md:py-6 flex justify-between items-center">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide text-gray-900">Save the Date</h1>
+        <div class="max-w-6xl mx-auto p-4 md:px-12 lg:px-16 md:py-6">
+            <div class="flex justify-between items-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide text-gray-900">S & A</h1>
+
+                <!-- Navigation Menu -->
+                <nav class="flex items-center gap-6 md:gap-8">
+                    <a href="#/" class="nav-link text-base md:text-lg text-gray-600" data-route="/">Save the Date</a>
+                    <a href="#/about" class="nav-link text-base md:text-lg text-gray-600" data-route="/about">About</a>
+                </nav>
+            </div>
         </div>
     </header>
 
     <!-- Main Content Container -->
-    <div class="max-w-6xl mx-auto p-4 md:p-12 lg:p-16 mt-16 md:mt-20">
+    <div id="app-content" class="max-w-6xl mx-auto p-4 md:p-12 lg:p-16 mt-20 md:mt-24">
+        <!-- Content will be dynamically loaded here -->
+    </div>
 
-        <!-- Mobile Image - Shows only on mobile, below title -->
-        <div class="block md:hidden mb-8">
-            <div class="flex justify-center">
-                <div class="mobile-image-wrapper image-container">
-                    <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full h-full object-contain image-loading" loading="eager">
+    <!-- Save the Date Page Template -->
+    <template id="save-the-date-page">
+        <div class="page-content">
+            <!-- Mobile Image - Shows only on mobile, below title -->
+            <div class="block md:hidden mb-8">
+                <div class="flex justify-center">
+                    <div class="mobile-image-wrapper image-container">
+                        <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full h-full object-contain image-loading" loading="eager">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Main Content -->
-        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <!-- Main Content -->
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             <!-- Left Column - Text Content -->
             <div class="space-y-8 md:space-y-12">
                 <!-- Introduction Section -->
@@ -205,7 +250,100 @@
                 </div>
             </div>
         </div>
-    </div>
+    </template>
+
+    <!-- About Page Template -->
+    <template id="about-page">
+        <div class="page-content">
+            <div class="max-w-4xl mx-auto">
+                <!-- Page Title -->
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-gray-900 mb-4">Our Story</h2>
+                    <p class="text-lg text-gray-600">How we met, fell in love, and decided to say "I do"</p>
+                </div>
+
+                <!-- Story Sections -->
+                <div class="space-y-16">
+                    <!-- First Meeting -->
+                    <section class="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="heart" class="w-5 h-5 text-pink-500"></i>
+                            <h3 class="text-2xl font-medium text-gray-900">How We Met</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            Our love story began in the most unexpected way. What started as a chance encounter
+                            blossomed into something beautiful. From our first conversation, we knew there was
+                            something special between us.
+                        </p>
+                    </section>
+
+                    <!-- The Journey -->
+                    <section class="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="map" class="w-5 h-5 text-blue-500"></i>
+                            <h3 class="text-2xl font-medium text-gray-900">Our Journey Together</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Through adventures big and small, we've built a life filled with laughter,
+                            love, and countless memories. Every day with each other has been a gift.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="text-sm font-semibold text-gray-700 mb-1">Favorite Memory</p>
+                                <p class="text-sm text-gray-600">Our first trip together</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="text-sm font-semibold text-gray-700 mb-1">Shared Passion</p>
+                                <p class="text-sm text-gray-600">Exploring new places</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- The Proposal -->
+                    <section class="bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-yellow-500"></i>
+                            <h3 class="text-2xl font-medium text-gray-900">The Proposal</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            When the moment came to take the next step, it was magical. Surrounded by
+                            love and joy, we said yes to forever. Now, we can't wait to celebrate
+                            this new chapter with all of you.
+                        </p>
+                    </section>
+
+                    <!-- Thank You Message -->
+                    <section class="text-center py-8">
+                        <div class="inline-flex items-center gap-2 mb-4">
+                            <span class="text-2xl">💝</span>
+                            <h3 class="text-2xl font-serif font-medium text-gray-900">Thank You</h3>
+                            <span class="text-2xl">💝</span>
+                        </div>
+                        <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                            We are so grateful to have you in our lives. Your love and support mean
+                            the world to us, and we can't wait to share our special day with you.
+                        </p>
+                        <p class="text-lg font-serif text-gray-900 mt-6">With love,</p>
+                        <p class="text-2xl font-serif text-gray-900 mt-2">Sandip & Anokhi</p>
+                    </section>
+
+                    <!-- Contact Section -->
+                    <section class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-6 md:p-8 border border-gray-200">
+                        <h3 class="text-2xl font-medium text-gray-900 mb-4 text-center">Get in Touch</h3>
+                        <p class="text-gray-600 text-center mb-6">
+                            Have questions about the wedding? Need help with travel arrangements?
+                            We're here to help!
+                        </p>
+                        <div class="flex justify-center">
+                            <button onclick="openRSVPModal()" class="px-6 py-3 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-800 transition-colors shadow-md">
+                                Contact Us
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </template>
 
     <!-- RSVP Modal -->
     <div id="rsvpModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
@@ -288,6 +426,85 @@
     </div>
 
     <script>
+        // Router implementation
+        class Router {
+            constructor() {
+                this.routes = {
+                    '/': 'save-the-date-page',
+                    '/about': 'about-page'
+                };
+                this.currentRoute = null;
+                this.init();
+            }
+
+            init() {
+                // Handle initial route
+                this.handleRoute();
+
+                // Listen for hash changes
+                window.addEventListener('hashchange', () => this.handleRoute());
+
+                // Handle back/forward browser buttons
+                window.addEventListener('popstate', () => this.handleRoute());
+            }
+
+            handleRoute() {
+                // Get current hash route
+                const hash = window.location.hash.slice(1) || '/';
+                const route = hash.startsWith('/') ? hash : '/' + hash;
+
+                // Update navigation active states
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (link.dataset.route === route) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                // Load the appropriate page
+                this.loadPage(route);
+            }
+
+            loadPage(route) {
+                const templateId = this.routes[route] || this.routes['/'];
+                const template = document.getElementById(templateId);
+                const content = document.getElementById('app-content');
+
+                if (template && content) {
+                    // Clear current content
+                    content.innerHTML = '';
+
+                    // Clone and insert new content
+                    const newContent = template.content.cloneNode(true);
+                    content.appendChild(newContent);
+
+                    // Trigger animations
+                    setTimeout(() => {
+                        const pageContent = content.querySelector('.page-content');
+                        if (pageContent) {
+                            pageContent.classList.add('active');
+                        }
+
+                        // Reinitialize page-specific functionality
+                        if (route === '/') {
+                            displayRandomHeroImage();
+                        }
+
+                        // Reinitialize Lucide icons
+                        lucide.createIcons();
+                    }, 50);
+                }
+
+                this.currentRoute = route;
+            }
+        }
+
+        // Initialize router when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new Router();
+        });
+
         // Cache version - UPDATE THIS when adding/removing images
         const CACHE_VERSION = '1.0.0';
         
@@ -388,11 +605,8 @@
             }
         }
 
-        // Display random hero image on page load
-        displayRandomHeroImage();
-
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Note: Hero image display and Lucide icons are now initialized by the router
+        // when loading the save-the-date page
 
         // Add scroll shadow to header
         window.addEventListener('scroll', function() {
