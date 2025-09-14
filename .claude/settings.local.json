@@ -8,7 +8,8 @@
       "Bash(python3:*)",
       "mcp__puppeteer__puppeteer_navigate",
       "mcp__puppeteer__puppeteer_evaluate",
-      "WebFetch(domain:www.publicalbum.org)"
+      "WebFetch(domain:www.publicalbum.org)",
+      "mcp__puppeteer__puppeteer_click"
     ],
     "deny": [],
     "ask": []
