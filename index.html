@@ -106,15 +106,15 @@
     <!-- Slide-out Navigation Menu -->
     <nav id="nav-menu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[70] transform translate-x-full transition-transform duration-300 ease-in-out">
         <div class="p-6">
-            <!-- Close Button -->
-            <button id="menu-close" class="absolute top-6 right-6 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" aria-label="Close menu">
-                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-
-            <!-- Menu Title -->
-            <h2 class="text-2xl font-light text-gray-900 mb-8 mt-4">Navigation</h2>
+            <!-- Menu Header with Title and Close Button -->
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-light text-gray-900">Navigation</h2>
+                <button id="menu-close" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
 
             <!-- Navigation Links -->
             <ul class="space-y-4">
