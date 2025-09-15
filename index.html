@@ -21,11 +21,17 @@
     <meta property="twitter:image" content="https://sandipwane.github.io/save-the-date/preview2.JPG">
     
     <!-- Preload hero images for faster loading -->
+    <link rel="preload" as="image" href="hero-images/boyglasses-01.svg">
     <link rel="preload" as="image" href="hero-images/dancing-01.svg">
+    <link rel="preload" as="image" href="hero-images/fistbump-01.svg">
+    <link rel="preload" as="image" href="hero-images/futuregazing-01.svg">
+    <link rel="preload" as="image" href="hero-images/girlcalendar-01.svg">
+    <link rel="preload" as="image" href="hero-images/handheart-01.svg">
     <link rel="preload" as="image" href="hero-images/joinus-01.svg">
     <link rel="preload" as="image" href="hero-images/moving-01.svg">
+    <link rel="preload" as="image" href="hero-images/planting-01.svg">
     <link rel="preload" as="image" href="hero-images/rainhug-01.svg">
-    <link rel="preload" as="image" href="hero-images/star-gazing-01.svg">
+    <link rel="preload" as="image" href="hero-images/stargazing-01.svg">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -335,15 +341,21 @@
 
     <script>
         // Cache version - UPDATE THIS when adding/removing images
-        const CACHE_VERSION = '1.0.0';
+        const CACHE_VERSION = '2.0.0';
         
         // Hero images array - update this list when adding new images
         const heroImages = [
+            'hero-images/boyglasses-01.svg',
             'hero-images/dancing-01.svg',
+            'hero-images/fistbump-01.svg',
+            'hero-images/futuregazing-01.svg',
+            'hero-images/girlcalendar-01.svg',
+            'hero-images/handheart-01.svg',
             'hero-images/joinus-01.svg',
             'hero-images/moving-01.svg',
+            'hero-images/planting-01.svg',
             'hero-images/rainhug-01.svg',
-            'hero-images/star-gazing-01.svg'
+            'hero-images/stargazing-01.svg'
         ];
 
         // Function to handle image loading with fade-in effect
@@ -368,70 +380,141 @@
             tempImg.src = imageSrc;
         }
 
-        // Function to select and display a random hero image with history tracking
-        function displayRandomHeroImage() {
-            if (heroImages.length === 0) return;
-            
-            // Get stored data from localStorage
-            let imageData = null;
+        // ==================== Sequential Image Display System ====================
+
+        /**
+         * Initialize the narrative sequence order for images
+         * Creates a visual story from anticipation to celebration
+         */
+        function initializeImageSequence() {
+            return [
+                'hero-images/boyglasses-01.svg',      // Beginning - anticipation
+                'hero-images/girlcalendar-01.svg',    // Planning the date
+                'hero-images/futuregazing-01.svg',    // Looking forward together
+                'hero-images/stargazing-01.svg',      // Dreaming under stars
+                'hero-images/fistbump-01.svg',        // Making commitment
+                'hero-images/handheart-01.svg',       // Love and affection
+                'hero-images/dancing-01.svg',         // Celebration begins
+                'hero-images/rainhug-01.svg',         // Through all weather
+                'hero-images/moving-01.svg',          // Journey together
+                'hero-images/planting-01.svg',        // Growing together
+                'hero-images/joinus-01.svg'           // Invitation to celebrate
+            ];
+        }
+
+        /**
+         * Generate a random starting point for new users
+         * @param {number} totalImages - Total number of images in sequence
+         * @returns {number} Random index between 0 and totalImages-1
+         */
+        function getSequenceStartIndex(totalImages) {
+            return Math.floor(Math.random() * totalImages);
+        }
+
+        /**
+         * Load saved user journey from localStorage
+         * @returns {Object|null} User journey data or null if invalid/not found
+         */
+        function loadUserJourneyData() {
             try {
-                const stored = localStorage.getItem('heroImageData');
-                imageData = stored ? JSON.parse(stored) : null;
+                const stored = localStorage.getItem('heroImageJourney');
+                const data = stored ? JSON.parse(stored) : null;
+
+                // Validate cache version
+                if (data && data.cacheVersion === CACHE_VERSION) {
+                    return data;
+                }
             } catch (e) {
-                console.log('Error reading localStorage:', e);
+                console.log('Error reading journey data:', e);
             }
-            
-            // Reset if version mismatch, no data, or corrupted data
-            if (!imageData || imageData.cacheVersion !== CACHE_VERSION) {
-                imageData = {
+            return null;
+        }
+
+        /**
+         * Save user journey data to localStorage
+         * @param {Object} journeyData - Journey data to save
+         */
+        function saveUserJourneyData(journeyData) {
+            try {
+                localStorage.setItem('heroImageJourney', JSON.stringify(journeyData));
+            } catch (e) {
+                console.log('Error saving journey data:', e);
+            }
+        }
+
+        /**
+         * Calculate next image index in sequence with wrap-around
+         * @param {number} currentIndex - Current position in sequence
+         * @param {Array} sequence - Image sequence array
+         * @returns {number} Next index in sequence
+         */
+        function getNextImageInSequence(currentIndex, sequence) {
+            return (currentIndex + 1) % sequence.length;
+        }
+
+        /**
+         * Reset user journey when cache version changes
+         */
+        function resetUserJourney() {
+            localStorage.removeItem('heroImageJourney');
+        }
+
+        /**
+         * Main function to display images in sequential order
+         * Creates a consistent journey for each user starting from a random point
+         */
+        function displaySequentialHeroImage() {
+            // Initialize the image sequence
+            const imageSequence = initializeImageSequence();
+
+            if (imageSequence.length === 0) return;
+
+            // Load or initialize user journey data
+            let journeyData = loadUserJourneyData();
+
+            if (!journeyData) {
+                // First visit or cache version change - start new journey
+                const startIndex = getSequenceStartIndex(imageSequence.length);
+                journeyData = {
                     cacheVersion: CACHE_VERSION,
-                    recentImages: [],
-                    lastShownImage: null
+                    journeyStartIndex: startIndex,
+                    currentSequenceIndex: startIndex,
+                    sequenceOrder: imageSequence,
+                    lastUpdated: new Date().toISOString()
                 };
+            } else {
+                // Continue existing journey - move to next image
+                journeyData.currentSequenceIndex = getNextImageInSequence(
+                    journeyData.currentSequenceIndex,
+                    imageSequence
+                );
+                journeyData.lastUpdated = new Date().toISOString();
             }
-            
-            // Filter out recently shown images to avoid repetition
-            let availableImages = heroImages.filter(img => 
-                !imageData.recentImages.includes(img)
-            );
-            
-            // If all images were recently shown (or only 1 image total), reset
-            if (availableImages.length === 0 || heroImages.length === 1) {
-                availableImages = heroImages;
-                imageData.recentImages = [];
-            }
-            
-            // Select a random image from available pool
-            const randomIndex = Math.floor(Math.random() * availableImages.length);
-            const selectedImage = availableImages[randomIndex];
-            
-            // Update recent images history (keep last 2-3 images)
-            imageData.recentImages.push(selectedImage);
-            const maxHistory = Math.min(3, Math.max(1, heroImages.length - 1));
-            if (imageData.recentImages.length > maxHistory) {
-                imageData.recentImages.shift();
-            }
-            
-            // Update last shown image
-            imageData.lastShownImage = selectedImage;
-            
-            // Save updated data to localStorage
-            try {
-                localStorage.setItem('heroImageData', JSON.stringify(imageData));
-            } catch (e) {
-                console.log('Error saving to localStorage:', e);
-            }
-            
+
+            // Get the current image to display
+            const selectedImage = imageSequence[journeyData.currentSequenceIndex];
+
+            // Save updated journey data
+            saveUserJourneyData(journeyData);
+
             // Update both mobile and desktop image elements with fade-in
             const mobileImage = document.getElementById('hero-image-mobile');
             const desktopImage = document.getElementById('hero-image-desktop');
-            
+
             if (mobileImage) {
                 loadImageWithFadeIn(mobileImage, selectedImage);
             }
             if (desktopImage) {
                 loadImageWithFadeIn(desktopImage, selectedImage);
             }
+
+            // Log journey info for debugging (remove in production)
+            console.log(`Journey: Starting at ${journeyData.journeyStartIndex}, Current: ${journeyData.currentSequenceIndex}`);
+        }
+
+        // Backward compatibility - redirect old function calls
+        function displayRandomHeroImage() {
+            displaySequentialHeroImage();
         }
 
         // Display random hero image on page load
@@ -882,24 +965,48 @@
 
                             <!-- Illustrations showcase with subtle background -->
                             <div class="bg-gradient-to-br from-gray-50 to-transparent rounded-lg p-6 mt-8">
-                                <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                                    <div class="flex flex-col items-center group">
+                                        <div class="transform transition-transform group-hover:scale-110">
+                                            <img src="hero-images/boyglasses-01.svg" alt="Boy with Glasses" class="w-20 h-20 mb-2">
+                                        </div>
+                                        <span class="text-xs text-gray-600 font-medium">Anticipation</span>
+                                    </div>
+                                    <div class="flex flex-col items-center group">
+                                        <div class="transform transition-transform group-hover:scale-110">
+                                            <img src="hero-images/girlcalendar-01.svg" alt="Girl with Calendar" class="w-20 h-20 mb-2">
+                                        </div>
+                                        <span class="text-xs text-gray-600 font-medium">Planning</span>
+                                    </div>
+                                    <div class="flex flex-col items-center group">
+                                        <div class="transform transition-transform group-hover:scale-110">
+                                            <img src="hero-images/futuregazing-01.svg" alt="Future Gazing" class="w-20 h-20 mb-2">
+                                        </div>
+                                        <span class="text-xs text-gray-600 font-medium">Future Gazing</span>
+                                    </div>
+                                    <div class="flex flex-col items-center group">
+                                        <div class="transform transition-transform group-hover:scale-110">
+                                            <img src="hero-images/stargazing-01.svg" alt="Star Gazing" class="w-20 h-20 mb-2">
+                                        </div>
+                                        <span class="text-xs text-gray-600 font-medium">Star Gazing</span>
+                                    </div>
+                                    <div class="flex flex-col items-center group">
+                                        <div class="transform transition-transform group-hover:scale-110">
+                                            <img src="hero-images/fistbump-01.svg" alt="Fist Bump" class="w-20 h-20 mb-2">
+                                        </div>
+                                        <span class="text-xs text-gray-600 font-medium">Commitment</span>
+                                    </div>
+                                    <div class="flex flex-col items-center group">
+                                        <div class="transform transition-transform group-hover:scale-110">
+                                            <img src="hero-images/handheart-01.svg" alt="Hand Heart" class="w-20 h-20 mb-2">
+                                        </div>
+                                        <span class="text-xs text-gray-600 font-medium">Love</span>
+                                    </div>
                                     <div class="flex flex-col items-center group">
                                         <div class="transform transition-transform group-hover:scale-110">
                                             <img src="hero-images/dancing-01.svg" alt="Dancing" class="w-20 h-20 mb-2">
                                         </div>
                                         <span class="text-xs text-gray-600 font-medium">Dancing</span>
-                                    </div>
-                                    <div class="flex flex-col items-center group">
-                                        <div class="transform transition-transform group-hover:scale-110">
-                                            <img src="hero-images/joinus-01.svg" alt="Join Us" class="w-20 h-20 mb-2">
-                                        </div>
-                                        <span class="text-xs text-gray-600 font-medium">Join Us</span>
-                                    </div>
-                                    <div class="flex flex-col items-center group">
-                                        <div class="transform transition-transform group-hover:scale-110">
-                                            <img src="hero-images/moving-01.svg" alt="Moving" class="w-20 h-20 mb-2">
-                                        </div>
-                                        <span class="text-xs text-gray-600 font-medium">Moving</span>
                                     </div>
                                     <div class="flex flex-col items-center group">
                                         <div class="transform transition-transform group-hover:scale-110">
@@ -909,9 +1016,21 @@
                                     </div>
                                     <div class="flex flex-col items-center group">
                                         <div class="transform transition-transform group-hover:scale-110">
-                                            <img src="hero-images/star-gazing-01.svg" alt="Star Gazing" class="w-20 h-20 mb-2">
+                                            <img src="hero-images/moving-01.svg" alt="Moving" class="w-20 h-20 mb-2">
                                         </div>
-                                        <span class="text-xs text-gray-600 font-medium">Star Gazing</span>
+                                        <span class="text-xs text-gray-600 font-medium">Journey</span>
+                                    </div>
+                                    <div class="flex flex-col items-center group">
+                                        <div class="transform transition-transform group-hover:scale-110">
+                                            <img src="hero-images/planting-01.svg" alt="Planting" class="w-20 h-20 mb-2">
+                                        </div>
+                                        <span class="text-xs text-gray-600 font-medium">Growing</span>
+                                    </div>
+                                    <div class="flex flex-col items-center group">
+                                        <div class="transform transition-transform group-hover:scale-110">
+                                            <img src="hero-images/joinus-01.svg" alt="Join Us" class="w-20 h-20 mb-2">
+                                        </div>
+                                        <span class="text-xs text-gray-600 font-medium">Join Us</span>
                                     </div>
                                 </div>
                             </div>
