@@ -15,7 +15,9 @@ Images are shown in random and not repeated but they are not in sequnce.
 I want the user journey to say start with a random images, however we should store this starting images in localstore and then we show the images in sequence. The images should cycle in a certain sequence. We can decide a sequnce for the images. and user can start with any index however I want user to cycle to a sequcne to same images is not repeated quickly. This acts as an easter egg for the user.
 
 
-### Post Task:
+## Post Task:
 Update the credits page with the new images.
 
 
+## Notes:
+- The current logic for images handling is mentioned in @hero-images/README.md
