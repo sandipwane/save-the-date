@@ -37,12 +37,15 @@
     <!-- Canvas Confetti for celebration animation -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Playwrite+US+Trad:wght@100..400&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Work Sans', sans-serif;
         }
         .font-serif {
             font-family: 'Playfair Display', serif;
+        }
+        .font-cursive {
+            font-family: 'Playwrite US Trad', cursive;
         }
         .header-shadow {
             box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -90,7 +93,7 @@
     <!-- Fixed Header -->
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-[#fcfcfc] transition-all duration-200">
         <div class="max-w-6xl mx-auto p-4 md:px-12 lg:px-16 md:py-6 flex justify-between items-center">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide text-gray-900">Wedding Invitation</h1>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-cursive font-normal tracking-wide text-gray-900">Wedding Invitation</h1>
             <!-- Burger Menu Button -->
             <button id="menu-toggle" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" aria-label="Toggle menu">
                 <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,7 +181,7 @@
                             <!-- Row 1: Icon and Text center-aligned -->
                             <div class="flex items-center gap-2 mb-3">
                                 <i data-lucide="calendar" class="w-5 h-5 text-gray-500"></i>
-                                <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Wedding Date</h4>
+                                <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-500">Wedding Date</h4>
                             </div>
 
                             <!-- Row 2: Date -->
@@ -203,7 +206,7 @@
                             <!-- Row 1: Icon and Text center-aligned -->
                             <div class="flex items-center gap-2 mb-3">
                                 <i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i>
-                                <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Venue</h4>
+                                <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-500">Venue</h4>
                             </div>
 
                             <!-- Row 2: Venue Name -->
