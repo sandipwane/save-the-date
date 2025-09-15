@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits - Wedding Invitation</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💝</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {}
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Playwrite+US+Trad:wght@100..400&display=swap');
+        body {
+            font-family: 'Work Sans', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-cursive {
+            font-family: 'Playwrite US Trad', cursive;
+        }
+        .header-shadow {
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+        .nav-link-active {
+            background-color: rgb(249 250 251);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#fcfcfc] transition-colors duration-200">
+    <!-- Fixed Header -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-[#fcfcfc] transition-all duration-200">
+        <div class="max-w-6xl mx-auto p-4 md:px-12 lg:px-16 md:py-6 flex justify-between items-center">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-cursive font-normal tracking-wide text-gray-900">Wedding Invitation</h1>
+            <!-- Burger Menu Button -->
+            <button id="menu-toggle" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" aria-label="Toggle menu">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Menu Overlay -->
+    <div id="nav-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Slide-out Navigation Menu -->
+    <nav id="nav-menu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[70] transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="p-6">
+            <!-- Menu Header with Title and Close Button -->
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-light text-gray-900">Navigation</h2>
+                <button id="menu-close" class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" aria-label="Close menu">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="space-y-4">
+                <li>
+                    <a href="index.html" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <span class="text-lg">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="credits.html" class="nav-link nav-link-active flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-lg">Credits</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div id="app-content" class="max-w-6xl mx-auto p-4 md:p-12 lg:p-16 mt-16 md:mt-20">
+        <div class="max-w-4xl mx-auto">
+            <!-- Credits Header -->
+            <div class="mb-10">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-gray-900 mb-4">Credits</h1>
+                <p class="text-lg sm:text-xl text-gray-600 font-light">Honoring the creative talents behind this wedding invitation</p>
+            </div>
+
+            <!-- Subtle separator line -->
+            <div class="w-full h-px bg-gray-200 mb-10"></div>
+
+            <!-- Mary Amato - Original Illustrator -->
+            <div class="mb-12">
+                <div class="mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
+                        Original Illustrations by Mary Amato
+                    </h2>
+                    <div class="flex flex-wrap items-center gap-6 mt-4">
+                        <a href="https://x.com/maryamato88" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
+                            <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                            <span class="font-medium">@maryamato88</span>
+                        </a>
+                        <a href="https://notioly.com/" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
+                            <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                            </svg>
+                            <span class="font-medium">notioly.com</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <p class="text-gray-700 leading-relaxed text-lg max-w-3xl">
+                        Mary Amato is the brilliant artist behind all the original illustrations used throughout this wedding invitation.
+                        We fell in love with Mary's distinctive Notion-style illustrations from Notioly. The minimalist black-and-white
+                        aesthetic, with its clean lines and expressive simplicity, brings a modern sophistication that perfectly
+                        reflects our style and makes our invitation uniquely ours.
+                    </p>
+
+                    <!-- Illustrations showcase with subtle background -->
+                    <div class="bg-gradient-to-br from-gray-50 to-transparent rounded-lg p-6 mt-8">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/boyglasses-01.svg" alt="Boy with Glasses" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Anticipation</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/girlcalendar-01.svg" alt="Girl with Calendar" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Planning</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/futuregazing-01.svg" alt="Future Gazing" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Future Gazing</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/stargazing-01.svg" alt="Star Gazing" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Star Gazing</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/fistbump-01.svg" alt="Fist Bump" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Commitment</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/handheart-01.svg" alt="Hand Heart" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Love</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/dancing-01.svg" alt="Dancing" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Dancing</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/rainhug-01.svg" alt="Rain Hug" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Rain Hug</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/moving-01.svg" alt="Moving" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Journey</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/planting-01.svg" alt="Planting" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Growing</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="transform transition-transform group-hover:scale-110">
+                                    <img src="hero-images/joinus-01.svg" alt="Join Us" class="w-20 h-20 mb-2">
+                                </div>
+                                <span class="text-xs text-gray-600 font-medium">Join Us</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subtle separator before button -->
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-12"></div>
+
+            <!-- Back to Invitation Button -->
+            <div class="text-center">
+                <a href="index.html" class="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Invitation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Add scroll shadow to header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 10) {
+                header.classList.add('header-shadow');
+            } else {
+                header.classList.remove('header-shadow');
+            }
+        });
+
+        // Navigation menu functionality
+        const navMenu = document.getElementById('nav-menu');
+        const navOverlay = document.getElementById('nav-overlay');
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+
+        // Toggle menu functions
+        function openMenu() {
+            navMenu.classList.remove('translate-x-full');
+            navOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            navMenu.classList.add('translate-x-full');
+            navOverlay.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        // Menu event listeners
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        navOverlay.addEventListener('click', closeMenu);
+    </script>
+</body>
+</html>
