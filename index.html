@@ -21,11 +21,17 @@
     <meta property="twitter:image" content="https://sandipwane.github.io/save-the-date/preview2.JPG">
     
     <!-- Preload hero images for faster loading -->
+    <link rel="preload" as="image" href="hero-images/boyglasses-01.svg">
     <link rel="preload" as="image" href="hero-images/dancing-01.svg">
+    <link rel="preload" as="image" href="hero-images/fistbump-01.svg">
+    <link rel="preload" as="image" href="hero-images/futuregazing-01.svg">
+    <link rel="preload" as="image" href="hero-images/girlcalendar-01.svg">
+    <link rel="preload" as="image" href="hero-images/handheart-01.svg">
     <link rel="preload" as="image" href="hero-images/joinus-01.svg">
     <link rel="preload" as="image" href="hero-images/moving-01.svg">
+    <link rel="preload" as="image" href="hero-images/planting-01.svg">
     <link rel="preload" as="image" href="hero-images/rainhug-01.svg">
-    <link rel="preload" as="image" href="hero-images/star-gazing-01.svg">
+    <link rel="preload" as="image" href="hero-images/stargazing-01.svg">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -51,21 +57,12 @@
             box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
         }
         
-        /* Image loading states */
+        /* Image container styles */
         .image-container {
             position: relative;
             background: transparent;
             overflow: hidden;
             border-radius: 0.5rem;
-        }
-        
-        .image-loading {
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-        }
-        
-        .image-loaded {
-            opacity: 1;
         }
         
         /* Fixed dimensions for mobile image container */
@@ -122,7 +119,7 @@
             <!-- Navigation Links -->
             <ul class="space-y-4">
                 <li>
-                    <a href="#/" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200" data-route="#/">
+                    <a href="index.html" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200 bg-gray-50 font-medium">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                         </svg>
@@ -130,7 +127,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#/credits" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200" data-route="#/credits">
+                    <a href="credits.html" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
@@ -147,8 +144,8 @@
         <!-- Mobile Image - Shows only on mobile, below title -->
         <div class="block md:hidden mb-8">
             <div class="flex justify-center">
-                <div class="mobile-image-wrapper image-container">
-                    <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full h-full object-contain image-loading" loading="eager">
+                <div class="mobile-image-wrapper image-container bg-gray-50">
+                    <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full h-full object-contain opacity-0 transition-opacity duration-500 ease-in-out will-change-opacity" loading="eager">
                 </div>
             </div>
         </div>
@@ -246,8 +243,8 @@
 
             <!-- Right Column - Illustration (Desktop only) -->
             <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-32">
-                <div class="desktop-image-wrapper image-container">
-                    <img id="hero-image-desktop" src="" alt="Calendar illustration" class="w-full h-full object-contain image-loading" loading="eager">
+                <div class="desktop-image-wrapper image-container bg-gray-50">
+                    <img id="hero-image-desktop" src="" alt="Calendar illustration" class="w-full h-full object-contain opacity-0 transition-opacity duration-500 ease-in-out will-change-opacity" loading="eager">
                 </div>
             </div>
         </div>
@@ -335,103 +332,198 @@
 
     <script>
         // Cache version - UPDATE THIS when adding/removing images
-        const CACHE_VERSION = '1.0.0';
+        const CACHE_VERSION = '2.0.0';
         
         // Hero images array - update this list when adding new images
         const heroImages = [
+            'hero-images/boyglasses-01.svg',
             'hero-images/dancing-01.svg',
+            'hero-images/fistbump-01.svg',
+            'hero-images/futuregazing-01.svg',
+            'hero-images/girlcalendar-01.svg',
+            'hero-images/handheart-01.svg',
             'hero-images/joinus-01.svg',
             'hero-images/moving-01.svg',
+            'hero-images/planting-01.svg',
             'hero-images/rainhug-01.svg',
-            'hero-images/star-gazing-01.svg'
+            'hero-images/stargazing-01.svg'
         ];
 
         // Function to handle image loading with fade-in effect
         function loadImageWithFadeIn(imgElement, imageSrc) {
             // Create a new image object to preload
             const tempImg = new Image();
-            
+
             tempImg.onload = function() {
                 // Image has loaded successfully
                 imgElement.src = imageSrc;
-                imgElement.classList.remove('image-loading');
-                imgElement.classList.add('image-loaded');
+
+                // Use requestAnimationFrame for smoother transition
+                requestAnimationFrame(() => {
+                    // Force browser to render the image first
+                    imgElement.offsetHeight;
+
+                    // Then trigger the fade-in by removing opacity-0 and adding opacity-100
+                    imgElement.classList.remove('opacity-0');
+                    imgElement.classList.add('opacity-100');
+                });
             };
-            
+
             tempImg.onerror = function() {
-                // Handle error gracefully - still show image area
-                imgElement.classList.remove('image-loading');
-                imgElement.classList.add('image-loaded');
+                // Handle error gracefully - still trigger fade-in
+                requestAnimationFrame(() => {
+                    imgElement.classList.remove('opacity-0');
+                    imgElement.classList.add('opacity-100');
+                });
             };
-            
+
             // Start loading the image
             tempImg.src = imageSrc;
         }
 
-        // Function to select and display a random hero image with history tracking
-        function displayRandomHeroImage() {
-            if (heroImages.length === 0) return;
-            
-            // Get stored data from localStorage
-            let imageData = null;
+        // ==================== Sequential Image Display System ====================
+
+        /**
+         * Initialize the narrative sequence order for images
+         * Creates a visual story from anticipation to celebration
+         */
+        function initializeImageSequence() {
+            return [
+                'hero-images/boyglasses-01.svg',      // Beginning - anticipation
+                'hero-images/girlcalendar-01.svg',    // Planning the date
+                'hero-images/futuregazing-01.svg',    // Looking forward together
+                'hero-images/stargazing-01.svg',      // Dreaming under stars
+                'hero-images/fistbump-01.svg',        // Making commitment
+                'hero-images/handheart-01.svg',       // Love and affection
+                'hero-images/dancing-01.svg',         // Celebration begins
+                'hero-images/rainhug-01.svg',         // Through all weather
+                'hero-images/moving-01.svg',          // Journey together
+                'hero-images/planting-01.svg',        // Growing together
+                'hero-images/joinus-01.svg'           // Invitation to celebrate
+            ];
+        }
+
+        /**
+         * Generate a random starting point for new users
+         * @param {number} totalImages - Total number of images in sequence
+         * @returns {number} Random index between 0 and totalImages-1
+         */
+        function getSequenceStartIndex(totalImages) {
+            return Math.floor(Math.random() * totalImages);
+        }
+
+        /**
+         * Load saved user journey from localStorage
+         * @returns {Object|null} User journey data or null if invalid/not found
+         */
+        function loadUserJourneyData() {
             try {
-                const stored = localStorage.getItem('heroImageData');
-                imageData = stored ? JSON.parse(stored) : null;
+                const stored = localStorage.getItem('heroImageJourney');
+                const data = stored ? JSON.parse(stored) : null;
+
+                // Validate cache version
+                if (data && data.cacheVersion === CACHE_VERSION) {
+                    return data;
+                }
             } catch (e) {
-                console.log('Error reading localStorage:', e);
+                console.log('Error reading journey data:', e);
             }
-            
-            // Reset if version mismatch, no data, or corrupted data
-            if (!imageData || imageData.cacheVersion !== CACHE_VERSION) {
-                imageData = {
+            return null;
+        }
+
+        /**
+         * Save user journey data to localStorage
+         * @param {Object} journeyData - Journey data to save
+         */
+        function saveUserJourneyData(journeyData) {
+            try {
+                localStorage.setItem('heroImageJourney', JSON.stringify(journeyData));
+            } catch (e) {
+                console.log('Error saving journey data:', e);
+            }
+        }
+
+        /**
+         * Calculate next image index in sequence with wrap-around
+         * @param {number} currentIndex - Current position in sequence
+         * @param {Array} sequence - Image sequence array
+         * @returns {number} Next index in sequence
+         */
+        function getNextImageInSequence(currentIndex, sequence) {
+            return (currentIndex + 1) % sequence.length;
+        }
+
+        /**
+         * Reset user journey when cache version changes
+         */
+        function resetUserJourney() {
+            localStorage.removeItem('heroImageJourney');
+        }
+
+        /**
+         * Main function to display images in sequential order
+         * Creates a consistent journey for each user starting from a random point
+         */
+        function displaySequentialHeroImage() {
+            // Initialize the image sequence
+            const imageSequence = initializeImageSequence();
+
+            if (imageSequence.length === 0) return;
+
+            // Load or initialize user journey data
+            let journeyData = loadUserJourneyData();
+
+            if (!journeyData) {
+                // First visit or cache version change - start new journey
+                const startIndex = getSequenceStartIndex(imageSequence.length);
+                journeyData = {
                     cacheVersion: CACHE_VERSION,
-                    recentImages: [],
-                    lastShownImage: null
+                    journeyStartIndex: startIndex,
+                    currentSequenceIndex: startIndex,
+                    sequenceOrder: imageSequence,
+                    lastUpdated: new Date().toISOString()
                 };
+            } else {
+                // Continue existing journey - move to next image
+                journeyData.currentSequenceIndex = getNextImageInSequence(
+                    journeyData.currentSequenceIndex,
+                    imageSequence
+                );
+                journeyData.lastUpdated = new Date().toISOString();
             }
-            
-            // Filter out recently shown images to avoid repetition
-            let availableImages = heroImages.filter(img => 
-                !imageData.recentImages.includes(img)
-            );
-            
-            // If all images were recently shown (or only 1 image total), reset
-            if (availableImages.length === 0 || heroImages.length === 1) {
-                availableImages = heroImages;
-                imageData.recentImages = [];
+
+            // Get the current image to display
+            const selectedImage = imageSequence[journeyData.currentSequenceIndex];
+
+            // Save updated journey data
+            saveUserJourneyData(journeyData);
+
+            // Prefetch the next image in sequence for faster loading on next refresh
+            const nextIndex = getNextImageInSequence(journeyData.currentSequenceIndex, imageSequence);
+            const nextImage = imageSequence[nextIndex];
+            if (nextImage) {
+                const prefetchImg = new Image();
+                prefetchImg.src = nextImage;
             }
-            
-            // Select a random image from available pool
-            const randomIndex = Math.floor(Math.random() * availableImages.length);
-            const selectedImage = availableImages[randomIndex];
-            
-            // Update recent images history (keep last 2-3 images)
-            imageData.recentImages.push(selectedImage);
-            const maxHistory = Math.min(3, Math.max(1, heroImages.length - 1));
-            if (imageData.recentImages.length > maxHistory) {
-                imageData.recentImages.shift();
-            }
-            
-            // Update last shown image
-            imageData.lastShownImage = selectedImage;
-            
-            // Save updated data to localStorage
-            try {
-                localStorage.setItem('heroImageData', JSON.stringify(imageData));
-            } catch (e) {
-                console.log('Error saving to localStorage:', e);
-            }
-            
+
             // Update both mobile and desktop image elements with fade-in
             const mobileImage = document.getElementById('hero-image-mobile');
             const desktopImage = document.getElementById('hero-image-desktop');
-            
+
             if (mobileImage) {
                 loadImageWithFadeIn(mobileImage, selectedImage);
             }
             if (desktopImage) {
                 loadImageWithFadeIn(desktopImage, selectedImage);
             }
+
+            // Log journey info for debugging (remove in production)
+            console.log(`Journey: Starting at ${journeyData.journeyStartIndex}, Current: ${journeyData.currentSequenceIndex}`);
+        }
+
+        // Backward compatibility - redirect old function calls
+        function displayRandomHeroImage() {
+            displaySequentialHeroImage();
         }
 
         // Display random hero image on page load
@@ -736,29 +828,14 @@
         }
 
         // ============================
-        // Navigation System
+        // Navigation Menu System
         // ============================
-
-        // Store the original home content
-        let homeContent = null;
 
         // Navigation state
         const navMenu = document.getElementById('nav-menu');
         const navOverlay = document.getElementById('nav-overlay');
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
-        const appContent = document.getElementById('app-content');
-
-        // Store home content on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            homeContent = appContent.innerHTML;
-
-            // Initialize routing
-            initRouter();
-
-            // Handle initial route
-            handleRoute(window.location.hash || '#/');
-        });
 
         // Toggle menu functions
         function openMenu() {
@@ -777,244 +854,6 @@
         menuToggle.addEventListener('click', openMenu);
         menuClose.addEventListener('click', closeMenu);
         navOverlay.addEventListener('click', closeMenu);
-
-        // Navigation link handling
-        function initRouter() {
-            // Handle navigation link clicks
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const route = this.getAttribute('data-route');
-                    navigateTo(route);
-                    closeMenu();
-                });
-            });
-
-            // Handle browser back/forward buttons (using hashchange for hash-based routing)
-            window.addEventListener('hashchange', function(e) {
-                handleRoute(window.location.hash || '#/');
-            });
-        }
-
-        // Navigate to a route
-        function navigateTo(route) {
-            // Update URL hash
-            window.location.hash = route.replace('#', '');
-        }
-
-        // Handle route changes
-        function handleRoute(route) {
-            // Normalize route
-            if (route === '' || route === '#' || route === '#/' || route === '/' || route === '/index.html') {
-                showHome();
-                route = '#/';
-            } else if (route === '#/credits' || route === '#/about' || route === '/credits' || route === '/about' || route === '/credits.html' || route === '/about.html') {
-                showCredits();
-                route = '#/credits';
-            } else {
-                // Default to home for unknown routes
-                showHome();
-                route = '#/';
-            }
-
-            // Update active nav link
-            updateActiveNavLink(route);
-        }
-
-        // Show home content
-        function showHome() {
-            if (homeContent) {
-                appContent.innerHTML = homeContent;
-                // Re-initialize any home page specific scripts
-                displayRandomHeroImage();
-                // Re-attach RSVP form listener if it exists
-                const rsvpForm = document.getElementById('rsvpForm');
-                if (rsvpForm) {
-                    rsvpForm.addEventListener('submit', handleRSVPSubmit);
-                }
-            }
-        }
-
-        // Show credits page
-        function showCredits() {
-            appContent.innerHTML = `
-                <div class="max-w-4xl mx-auto">
-                    <!-- Credits Header -->
-                    <div class="mb-10">
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-gray-900 mb-4">Credits</h1>
-                        <p class="text-lg sm:text-xl text-gray-600 font-light">Honoring the creative talents behind this wedding invitation</p>
-                    </div>
-
-                    <!-- Subtle separator line -->
-                    <div class="w-full h-px bg-gray-200 mb-10"></div>
-
-                    <!-- Mary Amato - Original Illustrator -->
-                    <div class="mb-12">
-                        <div class="mb-8">
-                            <h2 class="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
-                                Original Illustrations by Mary Amato
-                            </h2>
-                            <div class="flex flex-wrap items-center gap-6 mt-4">
-                                <a href="https://x.com/maryamato88" target="_blank" rel="noopener noreferrer"
-                                   class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
-                                    <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                                    </svg>
-                                    <span class="font-medium">@maryamato88</span>
-                                </a>
-                                <a href="https://notioly.com/" target="_blank" rel="noopener noreferrer"
-                                   class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
-                                    <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                    </svg>
-                                    <span class="font-medium">notioly.com</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="space-y-6">
-                            <p class="text-gray-700 leading-relaxed text-lg max-w-3xl">
-                                Mary Amato is the brilliant artist behind all the original illustrations used throughout this wedding invitation.
-                                We fell in love with Mary's distinctive Notion-style illustrations from Notioly. The minimalist black-and-white
-                                aesthetic, with its clean lines and expressive simplicity, brings a modern sophistication that perfectly
-                                reflects our style and makes our invitation uniquely ours.
-                            </p>
-
-                            <!-- Illustrations showcase with subtle background -->
-                            <div class="bg-gradient-to-br from-gray-50 to-transparent rounded-lg p-6 mt-8">
-                                <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                                    <div class="flex flex-col items-center group">
-                                        <div class="transform transition-transform group-hover:scale-110">
-                                            <img src="hero-images/dancing-01.svg" alt="Dancing" class="w-20 h-20 mb-2">
-                                        </div>
-                                        <span class="text-xs text-gray-600 font-medium">Dancing</span>
-                                    </div>
-                                    <div class="flex flex-col items-center group">
-                                        <div class="transform transition-transform group-hover:scale-110">
-                                            <img src="hero-images/joinus-01.svg" alt="Join Us" class="w-20 h-20 mb-2">
-                                        </div>
-                                        <span class="text-xs text-gray-600 font-medium">Join Us</span>
-                                    </div>
-                                    <div class="flex flex-col items-center group">
-                                        <div class="transform transition-transform group-hover:scale-110">
-                                            <img src="hero-images/moving-01.svg" alt="Moving" class="w-20 h-20 mb-2">
-                                        </div>
-                                        <span class="text-xs text-gray-600 font-medium">Moving</span>
-                                    </div>
-                                    <div class="flex flex-col items-center group">
-                                        <div class="transform transition-transform group-hover:scale-110">
-                                            <img src="hero-images/rainhug-01.svg" alt="Rain Hug" class="w-20 h-20 mb-2">
-                                        </div>
-                                        <span class="text-xs text-gray-600 font-medium">Rain Hug</span>
-                                    </div>
-                                    <div class="flex flex-col items-center group">
-                                        <div class="transform transition-transform group-hover:scale-110">
-                                            <img src="hero-images/star-gazing-01.svg" alt="Star Gazing" class="w-20 h-20 mb-2">
-                                        </div>
-                                        <span class="text-xs text-gray-600 font-medium">Star Gazing</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Subtle separator before button -->
-                    <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-12"></div>
-
-                    <!-- Back to Invitation Button -->
-                    <div class="text-center">
-                        <button onclick="navigateTo('#/')" class="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                            </svg>
-                            Back to Invitation
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Update active navigation link
-        function updateActiveNavLink(route) {
-            document.querySelectorAll('.nav-link').forEach(link => {
-                const linkRoute = link.getAttribute('data-route');
-                if ((route === '#/' || route === '/' || route === '/index.html' || route === '' || route === '#') && linkRoute === '#/') {
-                    link.classList.add('bg-gray-50', 'font-medium');
-                } else if (route === linkRoute) {
-                    link.classList.add('bg-gray-50', 'font-medium');
-                } else {
-                    link.classList.remove('bg-gray-50', 'font-medium');
-                }
-            });
-        }
-
-        // Handle RSVP form submission (extracted for re-attachment)
-        async function handleRSVPSubmit(e) {
-            e.preventDefault();
-
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                message: document.getElementById('message').value,
-                guests: document.querySelector('input[name="guests"]:checked')?.value || '1',
-                attendance: document.querySelector('input[name="attendance"]:checked')?.value || 'yes'
-            };
-
-            setLoading(true);
-            hideMessage();
-
-            try {
-                const response = await emailjs.send(
-                    'service_kzjz43g',
-                    'template_x7bqmvs',
-                    {
-                        to_name: 'Sandip & Anokhi',
-                        from_name: formData.name,
-                        from_email: formData.email,
-                        phone: formData.phone,
-                        guests: formData.guests,
-                        attendance: formData.attendance === 'yes' ? 'Yes, I\'ll be there!' : 'Sorry, can\'t make it',
-                        message: formData.message || 'No additional message',
-                        reply_to: formData.email
-                    }
-                );
-
-                if (response.status === 200) {
-                    showMessage('Thank you for your RSVP! We\'ve received your response.', false);
-
-                    if (formData.attendance === 'yes') {
-                        function fire(particleRatio, opts) {
-                            confetti({
-                                origin: { y: 0.6 },
-                                particleCount: Math.floor(200 * particleRatio),
-                                spread: 26,
-                                startVelocity: 55,
-                                ...opts
-                            });
-                        }
-
-                        fire(0.25, { spread: 26, startVelocity: 55 });
-                        fire(0.2, { spread: 60 });
-                        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-                        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-                        fire(0.1, { spread: 120, startVelocity: 45 });
-                    }
-
-                    setTimeout(() => {
-                        closeRSVPModal();
-                        document.getElementById('rsvpForm').reset();
-                    }, 3000);
-                } else {
-                    throw new Error('Failed to send RSVP');
-                }
-            } catch (error) {
-                console.error('Error sending RSVP:', error);
-                showMessage('There was an error sending your RSVP. Please try again or contact us directly.', true);
-            } finally {
-                setLoading(false);
-            }
-        }
     </script>
 </body>
 </html>
