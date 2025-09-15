@@ -103,6 +103,19 @@
             opacity: 0 !important;
             pointer-events: none !important;
         }
+
+        /* Prevent alt text from showing while images are loading */
+        img.opacity-0 {
+            font-size: 0;
+            color: transparent;
+        }
+
+        /* Ensure alt text is visible when image fails to load */
+        img.opacity-0:not([src]),
+        img.opacity-0[src=""] {
+            font-size: inherit;
+            color: inherit;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] transition-colors duration-200">
@@ -138,7 +151,7 @@
             <!-- Navigation Links -->
             <ul class="space-y-4">
                 <li>
-                    <a href="index.html" class="nav-link flex items-center px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-200 bg-gray-50 font-medium">
+                    <a href="index.html" class="nav-link flex items-center px-3 py-2 text-gray-700 bg-gray-50 font-medium rounded-lg transition-colors duration-200">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                         </svg>
@@ -856,13 +869,19 @@
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
 
-        // Remove initial hidden classes after page load to enable normal functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
+
+        // Remove initial hidden classes immediately after DOM is ready
+        // This prevents flash while ensuring menu functionality works
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
                 navMenu.classList.remove('nav-initial-hidden');
                 navOverlay.classList.remove('overlay-initial-hidden');
-            }, 100);
-        });
+            });
+        } else {
+            // DOM is already loaded
+            navMenu.classList.remove('nav-initial-hidden');
+            navOverlay.classList.remove('overlay-initial-hidden');
+        }
 
         // Toggle menu functions
         function openMenu() {
