@@ -84,6 +84,18 @@
                 max-width: 28rem; /* max-w-md on lg screens */
             }
         }
+
+        /* Critical CSS - Hide navigation menu on initial load to prevent flash */
+        #nav-menu {
+            transform: translateX(100%);
+            transition: transform 300ms ease-in-out;
+        }
+
+        #nav-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 300ms;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-[#fcfcfc] transition-colors duration-200">
