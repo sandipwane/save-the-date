@@ -57,21 +57,12 @@
             box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
         }
         
-        /* Image loading states */
+        /* Image container styles */
         .image-container {
             position: relative;
             background: transparent;
             overflow: hidden;
             border-radius: 0.5rem;
-        }
-        
-        .image-loading {
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-        }
-        
-        .image-loaded {
-            opacity: 1;
         }
         
         /* Fixed dimensions for mobile image container */
@@ -153,8 +144,8 @@
         <!-- Mobile Image - Shows only on mobile, below title -->
         <div class="block md:hidden mb-8">
             <div class="flex justify-center">
-                <div class="mobile-image-wrapper image-container">
-                    <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full h-full object-contain image-loading" loading="eager">
+                <div class="mobile-image-wrapper image-container bg-gray-50">
+                    <img id="hero-image-mobile" src="" alt="Calendar illustration" class="w-full h-full object-contain opacity-0 transition-opacity duration-500 ease-in-out will-change-opacity" loading="eager">
                 </div>
             </div>
         </div>
@@ -252,8 +243,8 @@
 
             <!-- Right Column - Illustration (Desktop only) -->
             <div class="hidden md:flex justify-center md:justify-end md:sticky md:top-32">
-                <div class="desktop-image-wrapper image-container">
-                    <img id="hero-image-desktop" src="" alt="Calendar illustration" class="w-full h-full object-contain image-loading" loading="eager">
+                <div class="desktop-image-wrapper image-container bg-gray-50">
+                    <img id="hero-image-desktop" src="" alt="Calendar illustration" class="w-full h-full object-contain opacity-0 transition-opacity duration-500 ease-in-out will-change-opacity" loading="eager">
                 </div>
             </div>
         </div>
@@ -362,20 +353,30 @@
         function loadImageWithFadeIn(imgElement, imageSrc) {
             // Create a new image object to preload
             const tempImg = new Image();
-            
+
             tempImg.onload = function() {
                 // Image has loaded successfully
                 imgElement.src = imageSrc;
-                imgElement.classList.remove('image-loading');
-                imgElement.classList.add('image-loaded');
+
+                // Use requestAnimationFrame for smoother transition
+                requestAnimationFrame(() => {
+                    // Force browser to render the image first
+                    imgElement.offsetHeight;
+
+                    // Then trigger the fade-in by removing opacity-0 and adding opacity-100
+                    imgElement.classList.remove('opacity-0');
+                    imgElement.classList.add('opacity-100');
+                });
             };
-            
+
             tempImg.onerror = function() {
-                // Handle error gracefully - still show image area
-                imgElement.classList.remove('image-loading');
-                imgElement.classList.add('image-loaded');
+                // Handle error gracefully - still trigger fade-in
+                requestAnimationFrame(() => {
+                    imgElement.classList.remove('opacity-0');
+                    imgElement.classList.add('opacity-100');
+                });
             };
-            
+
             // Start loading the image
             tempImg.src = imageSrc;
         }
@@ -496,6 +497,14 @@
 
             // Save updated journey data
             saveUserJourneyData(journeyData);
+
+            // Prefetch the next image in sequence for faster loading on next refresh
+            const nextIndex = getNextImageInSequence(journeyData.currentSequenceIndex, imageSequence);
+            const nextImage = imageSequence[nextIndex];
+            if (nextImage) {
+                const prefetchImg = new Image();
+                prefetchImg.src = nextImage;
+            }
 
             // Update both mobile and desktop image elements with fade-in
             const mobileImage = document.getElementById('hero-image-mobile');
