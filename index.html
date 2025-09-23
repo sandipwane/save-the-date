@@ -21,17 +21,14 @@
     <meta property="twitter:image" content="https://sandipwane.github.io/save-the-date/preview2.JPG">
     
     <!-- Preload hero images for faster loading -->
-    <link rel="preload" as="image" href="hero-images/boyglasses-01.svg">
-    <link rel="preload" as="image" href="hero-images/dancing-01.svg">
-    <link rel="preload" as="image" href="hero-images/fistbump-01.svg">
-    <link rel="preload" as="image" href="hero-images/futuregazing-01.svg">
-    <link rel="preload" as="image" href="hero-images/girlcalendar-01.svg">
+    <link rel="preload" as="image" href="hero-images/collaboration.svg">
+    <link rel="preload" as="image" href="hero-images/coffeedate.svg">
+    <link rel="preload" as="image" href="hero-images/bikeride.svg">
+    <link rel="preload" as="image" href="hero-images/flyingkiss.svg">
+    <link rel="preload" as="image" href="hero-images/hugs.svg">
     <link rel="preload" as="image" href="hero-images/handheart-01.svg">
+    <link rel="preload" as="image" href="hero-images/dancing-01.svg">
     <link rel="preload" as="image" href="hero-images/joinus-01.svg">
-    <link rel="preload" as="image" href="hero-images/moving-01.svg">
-    <link rel="preload" as="image" href="hero-images/planting-01.svg">
-    <link rel="preload" as="image" href="hero-images/rainhug-01.svg">
-    <link rel="preload" as="image" href="hero-images/stargazing-01.svg">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -348,21 +345,24 @@
 
     <script>
         // Cache version - UPDATE THIS when adding/removing images
-        const CACHE_VERSION = '2.0.0';
+        const CACHE_VERSION = '3.0.0';
         
         // Hero images array - update this list when adding new images
         const heroImages = [
-            'hero-images/boyglasses-01.svg',
+            'hero-images/bikeride.svg',
+            'hero-images/cardrive.svg',
+            'hero-images/coffeedate.svg',
+            'hero-images/collaboration.svg',
             'hero-images/dancing-01.svg',
-            'hero-images/fistbump-01.svg',
-            'hero-images/futuregazing-01.svg',
-            'hero-images/girlcalendar-01.svg',
+            'hero-images/fighting.svg',
+            'hero-images/flyingkiss.svg',
             'hero-images/handheart-01.svg',
+            'hero-images/hugs.svg',
             'hero-images/joinus-01.svg',
             'hero-images/moving-01.svg',
-            'hero-images/planting-01.svg',
             'hero-images/rainhug-01.svg',
-            'hero-images/stargazing-01.svg'
+            'hero-images/stargazing-01.svg',
+            'hero-images/travel.svg'
         ];
 
         // Function to handle image loading with fade-in effect
@@ -401,21 +401,24 @@
 
         /**
          * Initialize the narrative sequence order for images
-         * Creates a visual story from anticipation to celebration
+         * Creates a visual story from meeting to celebration
          */
         function initializeImageSequence() {
             return [
-                'hero-images/boyglasses-01.svg',      // Beginning - anticipation
-                'hero-images/girlcalendar-01.svg',    // Planning the date
-                'hero-images/futuregazing-01.svg',    // Looking forward together
-                'hero-images/stargazing-01.svg',      // Dreaming under stars
-                'hero-images/fistbump-01.svg',        // Making commitment
-                'hero-images/handheart-01.svg',       // Love and affection
-                'hero-images/dancing-01.svg',         // Celebration begins
-                'hero-images/rainhug-01.svg',         // Through all weather
-                'hero-images/moving-01.svg',          // Journey together
-                'hero-images/planting-01.svg',        // Growing together
-                'hero-images/joinus-01.svg'           // Invitation to celebrate
+                'hero-images/collaboration.svg',      // Beginning - meeting and working together
+                'hero-images/coffeedate.svg',         // First date - coffee connection
+                'hero-images/bikeride.svg',           // Adventures together - bike rides
+                'hero-images/cardrive.svg',           // Road trips and journeys
+                'hero-images/flyingkiss.svg',         // Romance blossoms
+                'hero-images/hugs.svg',               // Intimate connection
+                'hero-images/handheart-01.svg',       // Deep love and commitment
+                'hero-images/dancing-01.svg',         // Joyful moments
+                'hero-images/fighting.svg',           // Working through challenges
+                'hero-images/rainhug-01.svg',         // Support through difficulties
+                'hero-images/travel.svg',             // Exploring the world together
+                'hero-images/moving-01.svg',          // Life transitions together
+                'hero-images/stargazing-01.svg',      // Dreams and future plans
+                'hero-images/joinus-01.svg'           // Invitation to celebrate the wedding
             ];
         }
 
