@@ -10,7 +10,9 @@
       "mcp__puppeteer__puppeteer_evaluate",
       "WebFetch(domain:www.publicalbum.org)",
       "mcp__puppeteer__puppeteer_click",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(gh repo view:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
