@@ -21,7 +21,6 @@
     <meta property="twitter:image" content="https://sandipwane.github.io/save-the-date/invite-preview.jpg">
     
     <!-- Preload hero images for faster loading -->
-    <link rel="preload" as="image" href="hero-images/collaboration.svg">
     <link rel="preload" as="image" href="hero-images/coffeedate.svg">
     <link rel="preload" as="image" href="hero-images/bikeride.svg">
     <link rel="preload" as="image" href="hero-images/flyingkiss.svg">
@@ -539,14 +538,13 @@
 
     <script>
         // Cache version - UPDATE THIS when adding/removing images
-        const CACHE_VERSION = '3.0.0';
+        const CACHE_VERSION = '4.0.0';
         
         // Hero images array - update this list when adding new images
         const heroImages = [
             'hero-images/bikeride.svg',
             'hero-images/cardrive.svg',
             'hero-images/coffeedate.svg',
-            'hero-images/collaboration.svg',
             'hero-images/dancing-01.svg',
             'hero-images/fighting.svg',
             'hero-images/flyingkiss.svg',
@@ -599,8 +597,7 @@
          */
         function initializeImageSequence() {
             return [
-                'hero-images/collaboration.svg',      // Beginning - meeting and working together
-                'hero-images/coffeedate.svg',         // First date - coffee connection
+                'hero-images/coffeedate.svg',         // Beginning - first date coffee connection
                 'hero-images/bikeride.svg',           // Adventures together - bike rides
                 'hero-images/cardrive.svg',           // Road trips and journeys
                 'hero-images/flyingkiss.svg',         // Romance blossoms
