@@ -38,8 +38,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Canvas Confetti for celebration animation -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    <!-- Add to Calendar Button library for cross-platform calendar support -->
-    <script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+    <!-- Custom Calendar Integration Solution -->
+    <script src="calendar-solution.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&family=Pacifico&display=swap');
         body {
@@ -99,47 +99,64 @@
             pointer-events: none !important;
         }
 
-        /* Custom styles for Add to Calendar Button to match View on Map button */
-        add-to-calendar-button {
-            --btn-background: linear-gradient(to right, #f9fafb, #f8fafc);
-            --btn-background-hover: linear-gradient(to right, #f3f4f6, #f1f5f9);
-            --btn-text: #475569;
-            --btn-text-hover: #334155;
-            --btn-border: #e2e8f0;
-            --btn-border-hover: #cbd5e1;
-            --btn-shadow: none;
-            --btn-shadow-hover: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --font: 'Work Sans', sans-serif;
-            --btn-font-weight: 500;
-            --btn-font-size: 1rem;
-            --btn-padding-x: 1.25rem;
-            --btn-padding-y: 0.75rem;
-            --btn-border-radius: 0.375rem;
+        /* Custom Calendar Button Styles */
+        .calendar-button {
+            background: linear-gradient(to right, #f9fafb, #f8fafc);
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            transition: all 0.2s;
         }
 
-        /* Override the button shadow DOM styles */
-        add-to-calendar-button::part(atcb-button),
-        add-to-calendar-button .atcb-button {
-            background: linear-gradient(to right, #f9fafb, #f8fafc) !important;
-            color: #475569 !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 0.375rem !important;
-            padding: 0.75rem 1.25rem !important;
-            font-size: 1rem !important;
-            font-weight: 500 !important;
-            transition: all 0.2s !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 0.375rem !important;
-            box-shadow: none !important;
+        .calendar-button:hover {
+            background: linear-gradient(to right, #f3f4f6, #f1f5f9);
+            color: #334155;
+            border-color: #cbd5e1;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
 
-        add-to-calendar-button::part(atcb-button):hover,
-        add-to-calendar-button .atcb-button:hover {
-            background: linear-gradient(to right, #f3f4f6, #f1f5f9) !important;
-            color: #334155 !important;
-            border-color: #cbd5e1 !important;
-            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+        .calendar-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .calendar-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .calendar-options button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #475569;
+            transition: background 0.2s;
+        }
+
+        .calendar-options button:hover {
+            background: #f1f5f9;
         }
 
         /* RSVP Modal Animation Styles */
@@ -326,28 +343,7 @@
                             </div>
 
                             <!-- Add to Calendar Button -->
-                            <div>
-                                <add-to-calendar-button
-                                    name="Sandip & Anokhi's Wedding"
-                                    description="Join us as we celebrate the wedding of Sandip & Anokhi. Your presence will make our celebration complete!"
-                                    startDate="2025-12-02"
-                                    startTime="16:00"
-                                    endTime="20:00"
-                                    timeZone="Asia/Kolkata"
-                                    location="Turf Club Garden, Camp, Pune, Maharashtra, India"
-                                    options="['iCal']"
-                                    iCalFileName="sandip-anokhi-wedding"
-                                    buttonStyle="default"
-                                    lightMode="light"
-                                    size="5"
-                                    label="Add to Calendar"
-                                    trigger="click"
-                                    hideBackground
-                                    hideCheckmark
-                                    pastDateHandling="disable"
-                                    hideIconButton
-                                ></add-to-calendar-button>
-                            </div>
+                            <div id="calendar-container"></div>
                         </div>
 
                         <!-- Venue Card -->
@@ -1119,6 +1115,112 @@
         menuToggle.addEventListener('click', openMenu);
         menuClose.addEventListener('click', closeMenu);
         navOverlay.addEventListener('click', closeMenu);
+
+        // ============================
+        // Initialize Custom Calendar Solution
+        // ============================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize calendar with wedding details
+            const calendarIntegration = new CalendarIntegration({
+                title: "Sandip & Anokhi's Wedding",
+                description: "Join us as we celebrate the wedding of Sandip & Anokhi. Your presence will make our celebration complete!",
+                location: "Turf Club Garden, Camp, Pune, Maharashtra, India",
+                startDate: "2025-12-02",
+                startTime: "16:00",
+                endTime: "20:00",
+                timezone: "Asia/Kolkata"
+            });
+
+            // Create the calendar dropdown button
+            const container = document.getElementById('calendar-container');
+            if (container) {
+                // Create button HTML
+                container.innerHTML = `
+                    <div class="calendar-dropdown">
+                        <button id="calendar-btn" class="calendar-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>Add to Calendar</span>
+                        </button>
+                        <div id="calendar-options" class="calendar-options">
+                            <button class="calendar-option" data-provider="apple" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                                </svg>
+                                <span>Apple Calendar</span>
+                            </button>
+                            <button class="calendar-option" data-provider="google" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    <path d="M8 14h.01"></path>
+                                    <path d="M12 14h.01"></path>
+                                    <path d="M16 14h.01"></path>
+                                    <path d="M8 18h.01"></path>
+                                    <path d="M12 18h.01"></path>
+                                    <path d="M16 18h.01"></path>
+                                </svg>
+                                <span>Google Calendar</span>
+                            </button>
+                            <button class="calendar-option" data-provider="outlook" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="m22 7-10 5L2 7"></path>
+                                </svg>
+                                <span>Outlook</span>
+                            </button>
+                            <button class="calendar-option" data-provider="ical" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                                </svg>
+                                <span>Download .ics</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                // Add event listeners
+                const btn = document.getElementById('calendar-btn');
+                const options = document.getElementById('calendar-options');
+                const optionButtons = document.querySelectorAll('.calendar-option');
+
+                // Toggle dropdown
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const currentDisplay = window.getComputedStyle(options).display;
+                    options.style.display = currentDisplay === 'none' ? 'block' : 'none';
+                });
+
+                // Handle calendar option clicks
+                optionButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const provider = button.getAttribute('data-provider');
+                        calendarIntegration.openCalendar(provider);
+                        options.style.display = 'none';
+                    });
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', () => {
+                    if (options) {
+                        options.style.display = 'none';
+                    }
+                });
+            }
+
+            // Make calendarIntegration globally accessible for debugging
+            window.calendarIntegration = calendarIntegration;
+        });
     </script>
 </body>
 </html>
