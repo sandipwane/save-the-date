@@ -533,6 +533,10 @@
     </div>
 
     <script>
+        // ==================== Configuration ====================
+        // Toggle flag for image transitions - set to false to disable automatic rotation
+        const ENABLE_IMAGE_TRANSITIONS = true;  // true = rotate images every 4 seconds, false = show only initial image
+
         // Cache version - UPDATE THIS when adding/removing images
         const CACHE_VERSION = '4.0.0';
         
@@ -553,7 +557,7 @@
             'hero-images/travel.svg'
         ];
 
-        // Function to handle image loading with fade-in effect
+        // Function to handle image loading with fade-in effect (for initial load)
         function loadImageWithFadeIn(imgElement, imageSrc) {
             // Create a new image object to preload
             const tempImg = new Image();
@@ -583,6 +587,43 @@
 
             // Start loading the image
             tempImg.src = imageSrc;
+        }
+
+        // Function to handle smooth cross-fade between images (for rotation)
+        function crossFadeToImage(imgElement, newImageSrc) {
+            // Create a new image object to preload the next image
+            const tempImg = new Image();
+
+            tempImg.onload = function() {
+                // Start fade out of current image
+                imgElement.classList.remove('opacity-100');
+                imgElement.classList.add('opacity-0');
+
+                // Wait for fade out to complete (500ms matches CSS transition)
+                setTimeout(() => {
+                    // Change the image source
+                    imgElement.src = newImageSrc;
+
+                    // Use requestAnimationFrame to ensure image is rendered
+                    requestAnimationFrame(() => {
+                        // Force browser to render the new image
+                        imgElement.offsetHeight;
+
+                        // Fade in the new image
+                        imgElement.classList.remove('opacity-0');
+                        imgElement.classList.add('opacity-100');
+                    });
+                }, 500);
+            };
+
+            tempImg.onerror = function() {
+                console.error('Failed to load image:', newImageSrc);
+                // Still attempt to show the image even if preload failed
+                imgElement.src = newImageSrc;
+            };
+
+            // Start preloading the new image
+            tempImg.src = newImageSrc;
         }
 
         // ==================== Sequential Image Display System ====================
@@ -712,15 +753,29 @@
                 prefetchImg.src = nextImage;
             }
 
-            // Update both mobile and desktop image elements with fade-in
+            // Update both mobile and desktop image elements
             const mobileImage = document.getElementById('hero-image-mobile');
             const desktopImage = document.getElementById('hero-image-desktop');
 
+            // Check if this is initial load or rotation
+            // If image already has a src and opacity-100, it's a rotation
+            const isRotation = (element) => {
+                return element && element.src && element.classList.contains('opacity-100');
+            };
+
             if (mobileImage) {
-                loadImageWithFadeIn(mobileImage, selectedImage);
+                if (isRotation(mobileImage)) {
+                    crossFadeToImage(mobileImage, selectedImage);
+                } else {
+                    loadImageWithFadeIn(mobileImage, selectedImage);
+                }
             }
             if (desktopImage) {
-                loadImageWithFadeIn(desktopImage, selectedImage);
+                if (isRotation(desktopImage)) {
+                    crossFadeToImage(desktopImage, selectedImage);
+                } else {
+                    loadImageWithFadeIn(desktopImage, selectedImage);
+                }
             }
 
             // Log journey info for debugging (remove in production)
@@ -734,6 +789,25 @@
 
         // Display random hero image on page load
         displayRandomHeroImage();
+
+        // Start automatic image rotation after initial load
+        function startImageRotation() {
+            // Only start rotation if transitions are enabled
+            if (!ENABLE_IMAGE_TRANSITIONS) {
+                console.log('Image transitions are disabled - showing static image only');
+                return;
+            }
+
+            // Rotate images every 4 seconds
+            setInterval(() => {
+                displaySequentialHeroImage();
+            }, 4000);
+        }
+
+        // Give the initial image time to load, then start rotation (if enabled)
+        if (ENABLE_IMAGE_TRANSITIONS) {
+            setTimeout(startImageRotation, 1000);
+        }
 
         // Initialize Lucide icons
         lucide.createIcons();
