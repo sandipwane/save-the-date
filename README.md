@@ -1,8 +1,10 @@
 # Save the Date - Sandip & Anokhi
 
-![Wedding Invitation Preview](screenshot.png)
+| Desktop | Mobile |
+|---------|--------|
+| ![Desktop Preview](screenshot.png) | ![Mobile Preview](screenshot-mobile.png) |
 
-A mobile-friendly wedding invitation website for December 2025.
+A mobile-friendly wedding invitation website for wedding of Sandip & Anokhi on 2nd December 2025.
 
 **Live Site:** [invite.sandipanokhi.space](https://invite.sandipanokhi.space)
 
